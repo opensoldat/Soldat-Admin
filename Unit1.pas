@@ -13,11 +13,12 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, IdBaseComponent, IdComponent, IdTCPServer,
-  IdTCPConnection, IdTCPClient, ExtCtrls, ComCtrls, Menus, IniFiles;
+  Dialogs, StdCtrls, ExtCtrls, ComCtrls, Menus,
+  IdBaseComponent, IdComponent, IdTCPServer, IdTCPConnection, IdTCPClient,
+  IniFiles;
 
 const
- PLAYERNAME_CHARS = 24;
+  PLAYERNAME_CHARS = 24;
    
 type
   TForm1 = class(TForm)
@@ -380,7 +381,6 @@ begin
   except
   end;
 end;
-
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
