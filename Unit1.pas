@@ -68,8 +68,8 @@ type
     procedure RefreshTimerTimer(Sender: TObject);
     procedure ShutdownClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure SaveConfig(filename : string);
-    procedure LoadConfig(filename : string);
+    procedure SaveConfig(Filename: string);
+    procedure LoadConfig(Filename: string);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
@@ -78,29 +78,26 @@ type
   end;
 
 
- TMsg_Refresh = packed record
-  Name : array[1..32] of string[PLAYERNAME_CHARS];
-  Team : array[1..32] of byte;
-  Kills : array[1..32] of word;
-  Deaths : array[1..32] of word;
-  Ping : array[1..32] of byte;
-  Number : array[1..32] of byte;
-  IP : array[1..32,1..4] of byte;
-  TeamScore : array[1..4] of word;
-  MapName : string[16];
-  TimeLimit, CurrentTime : integer;
-  KillLimit : word;
-  GameStyle : byte;
- end;
+  TMsg_Refresh = packed record
+    Name: array[1..32] of string[PLAYERNAME_CHARS];
+    Team: array[1..32] of Byte;
+    Kills: array[1..32] of Word;
+    Deaths: array[1..32] of Word;
+    Ping: array[1..32] of Byte;
+    Number: array[1..32] of Byte;
+    IP: array[1..32,1..4] of Byte;
+    TeamScore: array[1..4] of Word;
+    MapName: string[16];
+    TimeLimit, CurrentTime: Integer;
+    KillLimit: Word;
+    GameStyle: Byte;
+  end;
 
 
 var
   Form1: TForm1;
-
-  RefreshMsg : TMsg_Refresh;
-
-  LastCmd : string = '';
-
+  RefreshMsg: TMsg_Refresh;
+  LastCmd: string = '';
   Client: TIdTCPClient;
 
 implementation
@@ -108,273 +105,280 @@ implementation
 {$R *.dfm}
 
 
-procedure TForm1.SaveConfig(filename : string);
+procedure TForm1.SaveConfig(Filename: string);
 var
- ini:Tinifile;
- conf:Tstringlist;
- s : string;
- i : longint;
+  Ini: TIniFile;
+  Conf: TStringList;
+  S: string;
+  I: Longint;
 begin
-conf:=Tstringlist.create;
-ini:=Tinifile.Create(filename);
- Ini.WriteString('ADMIN','IP',Host.Text);
- Ini.WriteString('ADMIN','Port',Port.Text);
-ini.free;
-conf.free;
+  conf := TStringList.Create;
+  Ini := TIniFile.Create(Filename);
+  Ini.WriteString('ADMIN', 'IP', Host.Text);
+  Ini.WriteString('ADMIN', 'Port', Port.Text);
+  Ini.Free;
+  Conf.Free;
 end;
 
-procedure TForm1.LoadConfig(filename : string);
+procedure TForm1.LoadConfig(Filename: string);
 var
- ini:Tmeminifile;
- conf:Tstringlist;
- s : string;
- i : longint;
+  Ini: TMemIniFile;
+  Conf: TStringList;
+  S: string;
+  I: Longint;
 begin
-conf:=Tstringlist.create;
-ini:=Tmeminifile.Create(filename);
-if not assigned(ini) then exit;
+  Conf := TStringList.Create;
+  Ini := TMemIniFile.Create(Filename);
+  if not Assigned(Ini) then
+    Exit;
 
- ini.ReadSectionValues('ADMIN',conf);
- Host.Text:= conf.values['IP'];
- Port.Text:= conf.values['Port'];
+  Ini.ReadSectionValues('ADMIN', Conf);
+  Host.Text := Conf.Values['IP'];
+  Port.Text := Conf.Values['Port'];
 
-ini.free;
-conf.free;
+  Ini.Free;
+  Conf.Free;
 end;
-
-
 
 procedure TForm1.ConnectClick(Sender: TObject);
 begin
-if not Client.Connected then
-begin
- Client.Host := Host.Text;
- Client.Port:= strtoint(Port.Text);
- try
- Client.Connect;
- except
- end;
-end else
-begin
- try
- Client.Disconnect;
- except
- end;
- Connect.Caption:= 'Connect';
- Refresh.Enabled:= false;
- Shutdown.Enabled:= false;
- end;
+  if not Client.Connected then
+  begin
+    Client.Host := Host.Text;
+    Client.Port := StrToInt(Port.Text);
+    try
+      Client.Connect;
+    except
+    end;
+  end else
+  begin
+    try
+      Client.Disconnect;
+    except
+    end;
+    Connect.Caption := 'Connect';
+    Refresh.Enabled := False;
+    Shutdown.Enabled := False;
+  end;
 end;
 
 procedure TForm1.ClientConnected(Sender: TObject);
 begin
- try
- Client.WriteLn(Pass.Text);
- except
- end;
- Connect.Caption:= 'Disconnect';
+  try
+    Client.WriteLn(Pass.Text);
+  except
+  end;
+  Connect.Caption:= 'Disconnect';
 
- Refresh.Enabled:= true;
- Shutdown.Enabled:= true;
+  Refresh.Enabled := True;
+  Shutdown.Enabled := True;
 end;
 
 procedure TForm1.TimerTimer(Sender: TObject);
 var
-  Com,
-  Msg : String;
-  ListItem : TListItem;
-  i : integer;
+  Com, Msg: string;
+  ListItem: TListItem;
+  I: Integer;
 begin
   if not Client.Connected then
-    exit;
+    Exit;
 
   Msg := Client.ReadLn('', 5);
 
   if Msg <> '' then
   begin
-   //////////REFRESH//////////////////////////
-    if Msg='REFRESH' then
+    //////////REFRESH//////////////////////////
+    if Msg = 'REFRESH' then
     begin
-    // Memo.Lines.Add('Receiving server state...');
-     Client.ReadTimeout := 2000;
-     Client.ReadBuffer(RefreshMsg, sizeof(RefreshMsg));
+      // Memo.Lines.Add('Receiving server state...');
+      Client.ReadTimeout := 2000;
+      Client.ReadBuffer(RefreshMsg, SizeOf(RefreshMsg));
 
-     for i:= 1 to 32 do
-     if RefreshMsg.Team[i]<5 then
-     begin
-      ListItem:= PlayerList.Items.Add;
-      ListItem.Caption:= RefreshMsg.Name[i];
-      ListItem.SubItems.Add(inttostr(RefreshMsg.Kills[i]));
-      ListItem.SubItems.Add(inttostr(RefreshMsg.Deaths[i]));
-      ListItem.SubItems.Add(inttostr(RefreshMsg.Ping[i]));
-      ListItem.SubItems.Add(inttostr(RefreshMsg.Team[i]));
-      ListItem.SubItems.Add(inttostr(RefreshMsg.IP[i][1])+'.'+inttostr(RefreshMsg.IP[i][2])+'.'+inttostr(RefreshMsg.IP[i][3])+'.'+inttostr(RefreshMsg.IP[i][4]) );
-      ListItem.SubItems.Add(inttostr(RefreshMsg.Number[i]));
-     end;
-
-      MapName.Caption:= 'Map: '+RefreshMsg.MapName;
-      Team1.Caption:= 'Alpha: ' + inttostr(RefreshMsg.TeamScore[1]);
-      Team2.Caption:= 'Bravo: ' + inttostr(RefreshMsg.TeamScore[2]);
-      Team3.Caption:= 'Charlie: ' + inttostr(RefreshMsg.TeamScore[3]);
-      Team4.Caption:= 'Delta: ' + inttostr(RefreshMsg.TeamScore[4]);
-      Time.Caption:= 'Time: '+inttostr((RefreshMsg.CurrentTime div 3600)) +'/'+ inttostr((RefreshMsg.TimeLimit div 3600)) ;
-      Limit.Caption:= 'Score Limit: '+inttostr(RefreshMsg.KillLimit);
-      case RefreshMsg.GameStyle of
-       0 : GameMode.Caption:= 'Game Mode: DM';
-       1 : GameMode.Caption:= 'Game Mode: PM';
-       2 : GameMode.Caption:= 'Game Mode: TM';
-       3 : GameMode.Caption:= 'Game Mode: CTF';
-       4 : GameMode.Caption:= 'Game Mode: RM';
-       5 : GameMode.Caption:= 'Game Mode: INF';
+      for I := 1 to 32 do
+      if RefreshMsg.Team[I] < 5 then
+      begin
+        ListItem := PlayerList.Items.Add;
+        ListItem.Caption := RefreshMsg.Name[I];
+        ListItem.SubItems.Add(IntToStr(RefreshMsg.Kills[I]));
+        ListItem.SubItems.Add(IntToStr(RefreshMsg.Deaths[I]));
+        ListItem.SubItems.Add(IntToStr(RefreshMsg.Ping[I]));
+        ListItem.SubItems.Add(IntToStr(RefreshMsg.Team[I]));
+        ListItem.SubItems.Add(IntToStr(RefreshMsg.IP[I][1]) + '.' +
+          IntToStr(RefreshMsg.IP[I][2]) + '.' +
+          IntToStr(RefreshMsg.IP[I][3]) + '.' +
+          IntToStr(RefreshMsg.IP[I][4]));
+        ListItem.SubItems.Add(IntToStr(RefreshMsg.Number[I]));
       end;
 
-   //  Memo.Lines.Add('Server state refreshed');
-     exit;
+      MapName.Caption := 'Map: ' + RefreshMsg.MapName;
+      Team1.Caption := 'Alpha: ' + IntToStr(RefreshMsg.TeamScore[1]);
+      Team2.Caption := 'Bravo: ' + IntToStr(RefreshMsg.TeamScore[2]);
+      Team3.Caption := 'Charlie: ' + IntToStr(RefreshMsg.TeamScore[3]);
+      Team4.Caption := 'Delta: ' + IntToStr(RefreshMsg.TeamScore[4]);
+      Time.Caption := 'Time: ' + IntToStr((RefreshMsg.CurrentTime div 3600)) +
+        '/'+ IntToStr((RefreshMsg.TimeLimit div 3600)) ;
+      Limit.Caption := 'Score Limit: ' + IntToStr(RefreshMsg.KillLimit);
+      case RefreshMsg.GameStyle of
+        0: GameMode.Caption := 'Game Mode: DM';
+        1: GameMode.Caption := 'Game Mode: PM';
+        2: GameMode.Caption := 'Game Mode: TM';
+        3: GameMode.Caption := 'Game Mode: CTF';
+        4: GameMode.Caption := 'Game Mode: RM';
+        5: GameMode.Caption := 'Game Mode: INF';
+      end;
+
+     // Memo.Lines.Add('Server state refreshed');
+     Exit;
     end;
+    //////////REFRESH//////////////////////////
 
-   //////////REFRESH//////////////////////////
-
-   Memo.Lines.Add(Msg);
-   if Msg='Invalid server password. Cannot login.' then
-   begin
-     Connect.Caption:= 'Connect';
-     Refresh.Enabled:= false;
-     Shutdown.Enabled:= false;
-    try
-    Client.Disconnect;
-    except
+    Memo.Lines.Add(Msg);
+    if Msg = 'Invalid server password. Cannot login.' then
+    begin
+      Connect.Caption := 'Connect';
+      Refresh.Enabled := False;
+      Shutdown.Enabled := False;
+      try
+        Client.Disconnect;
+      except
+      end;
+      Exit;
     end;
-    exit;
-   end;
-
   end;
-
 end;
 
 procedure TForm1.ClientDisconnected(Sender: TObject);
 begin
- try
- Client.WriteLn('Admin disconnected');
- except
- end;
+  try
+    Client.WriteLn('Admin disconnected');
+  except
+  end;
 end;
 
 procedure TForm1.CmdKeyPress(Sender: TObject; var Key: Char);
 begin
- if Key=#13 then
- begin
- try
-  if Client.Connected then
-  Client.WriteLn(Cmd.Text) else
-  Memo.Lines.Add(Cmd.Text);
-  LastCmd:= Cmd.Text;
-  Cmd.Text:= '';
- except
- end;
- end;
+  if Key = #13 then
+  begin
+    try
+      if Client.Connected then
+        Client.WriteLn(Cmd.Text)
+      else
+        Memo.Lines.Add(Cmd.Text);
+      LastCmd := Cmd.Text;
+      Cmd.Text := '';
+    except
+    end;
+  end;
 
- if Key=#8 then
- begin
-  if Cmd.Text='' then
-  Cmd.Text:= LastCmd;
- end;
+  if Key = #8 then
+  begin
+    if Cmd.Text = '' then
+      Cmd.Text := LastCmd;
+  end;
 end;
 
 procedure TForm1.ExitButtonClick(Sender: TObject);
 begin
- try
- if Client.Connected then
-  Client.Disconnect;
- except
- end;
- SaveConfig(ExtractFilePath(Application.ExeName)+'admin.ini');
- Close;
+  try
+    if Client.Connected then
+      Client.Disconnect;
+  except
+  end;
+  SaveConfig(ExtractFilePath(Application.ExeName) + 'admin.ini');
+  Close;
 end;
 
 procedure TForm1.RefreshClick(Sender: TObject);
 begin
- PlayerList.Clear;
+  PlayerList.Clear;
 
- try
-  Client.WriteLn('REFRESH')
- except
- end;
+  try
+    Client.WriteLn('REFRESH');
+  except
+  end;
 end;
 
 procedure TForm1.PlayerListMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var
- m : tpoint;
+  M: TPoint;
 begin
- if Button = mbRight then
- begin
-  GetCursorPos(m);
-  PlayerList.PopupMenu.Popup(m.x, m.y);
- end;
+  if Button = mbRight then
+  begin
+    GetCursorPos(M);
+    PlayerList.PopupMenu.Popup(M.x, M.y);
+  end;
 end;
 
 procedure TForm1.Kick1Click(Sender: TObject);
 var
- i : integer;
- S : string;
- ch : char;
+  I: Integer;
+  S: string;
+  Ch: Char;
 begin
- if PlayerList.Items.Count=0 then exit;
- i:= PlayerList.Itemindex;
- if (i<0)or(i>(PlayerList.Items.Count-1)) then exit;
+  if PlayerList.Items.Count = 0 then
+    Exit;
+  I := PlayerList.Itemindex;
+  if (I < 0) or (I > (PlayerList.Items.Count - 1)) then
+    Exit;
 
- S:= PlayerList.Items[i].Caption;
+  S := PlayerList.Items[I].Caption;
 
- Cmd.Text:= '/kick ' + S;
- ch:= #13;
- CmdKeyPress(nil, ch);
+  Cmd.Text:= '/kick ' + S;
+  Ch := #13;
+  CmdKeyPress(nil, Ch);
 end;
 
 procedure TForm1.Admin1Click(Sender: TObject);
 var
- i : integer;
- S : string;
- ch : char;
+  I: Integer;
+  S: string;
+  Ch: Char;
 begin
- if PlayerList.Items.Count=0 then exit;
- i:= PlayerList.Itemindex;
- if (i<0)or(i>(PlayerList.Items.Count-1)) then exit;
+  if PlayerList.Items.Count = 0 then
+    Exit;
+  I := PlayerList.ItemIndex;
+  if (I < 0) or (I > (PlayerList.Items.Count - 1)) then
+    Exit;
 
- S:= PlayerList.Items[i].Caption;
+  S := PlayerList.Items[I].Caption;
 
- Cmd.Text:= '/adm ' + S;
- ch:= #13;
- CmdKeyPress(nil, ch);
+  Cmd.Text:= '/adm ' + S;
+  Ch:= #13;
+  CmdKeyPress(nil, Ch);
 end;
 
 procedure TForm1.Ban1Click(Sender: TObject);
 var
- i : integer;
- S : string;
- ch : char;
+  I: Integer;
+  S: string;
+  Ch: Char;
 begin
- if PlayerList.Items.Count=0 then exit;
- i:= PlayerList.Itemindex;
- if (i<0)or(i>(PlayerList.Items.Count-1)) then exit;
+  if PlayerList.Items.Count = 0 then
+    Exit;
+  I := PlayerList.ItemIndex;
+  if (I < 0) or (I > (PlayerList.Items.Count - 1)) then
+    Exit;
 
- S:= PlayerList.Items[i].Caption;
+  S := PlayerList.Items[I].Caption;
 
- Cmd.Text:= '/ban ' + S;
- ch:= #13;
- CmdKeyPress(nil, ch);
+  Cmd.Text:= '/ban ' + S;
+  Ch := #13;
+  CmdKeyPress(nil, Ch);
 end;
 
 procedure TForm1.RefreshTimerTimer(Sender: TObject);
 begin
- if (Auto.Checked)and(Form1.WindowState<>wsMinimized) then RefreshClick(nil);
+  if (Auto.Checked) and (Form1.WindowState <> wsMinimized) then
+    RefreshClick(nil);
 end;
 
 procedure TForm1.ShutdownClick(Sender: TObject);
 begin
- try
-  Client.WriteLn('SHUTDOWN')
- except
- end; 
+  try
+    Client.WriteLn('SHUTDOWN')
+  except
+  end;
 end;
 
 
@@ -387,12 +391,12 @@ begin
   Client.Port := 23073;
   Client.ReadTimeout := -1;
 
- LoadConfig(ExtractFilePath(Application.ExeName)+'admin.ini');
+  LoadConfig(ExtractFilePath(Application.ExeName) + 'admin.ini');
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
- SaveConfig(ExtractFilePath(Application.ExeName)+'admin.ini');
+  SaveConfig(ExtractFilePath(Application.ExeName) + 'admin.ini');
 end;
 
 end.
