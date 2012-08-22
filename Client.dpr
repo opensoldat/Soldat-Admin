@@ -1,3 +1,12 @@
+{************************************************************}
+{                                                            }
+{       Soldat Admin                                         }
+{                                                            }
+{       Copyright (c) 2003-2004 Michal Marcinkowski          }
+{                                                            }
+{       free to distribute and modify                        }
+{************************************************************}
+
 program Client;
 
 uses

@@ -1,11 +1,12 @@
- {
-       Soldat Admin
-        for SOLDAT
+{************************************************************}
+{                                                            }
+{       Main Unit for Soldat Admin                           }
+{                                                            }
+{       Copyright (c) 2003-2004 Michal Marcinkowski          }
+{                                                            }
+{       free to distribute and modify                        }
+{************************************************************}
 
- Copyright © 2003-04 Michal Marcinkowski
-
-   free to distribute and modify
- }
 unit Unit1;
 
 interface
