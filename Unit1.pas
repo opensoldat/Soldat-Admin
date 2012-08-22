@@ -168,7 +168,7 @@ begin
     Client.WriteLn(Pass.Text);
   except
   end;
-  Connect.Caption:= 'Disconnect';
+  Connect.Caption := 'Disconnect';
 
   Refresh.Enabled := True;
   Shutdown.Enabled := True;
@@ -216,7 +216,7 @@ begin
       Team3.Caption := 'Charlie: ' + IntToStr(RefreshMsg.TeamScore[3]);
       Team4.Caption := 'Delta: ' + IntToStr(RefreshMsg.TeamScore[4]);
       Time.Caption := 'Time: ' + IntToStr((RefreshMsg.CurrentTime div 3600)) +
-        '/'+ IntToStr((RefreshMsg.TimeLimit div 3600)) ;
+        '/' + IntToStr((RefreshMsg.TimeLimit div 3600)) ;
       Limit.Caption := 'Score Limit: ' + IntToStr(RefreshMsg.KillLimit);
       case RefreshMsg.GameStyle of
         0: GameMode.Caption := 'Game Mode: DM';
@@ -343,8 +343,8 @@ begin
 
   S := PlayerList.Items[I].Caption;
 
-  Cmd.Text:= '/adm ' + S;
-  Ch:= #13;
+  Cmd.Text := '/adm ' + S;
+  Ch := #13;
   CmdKeyPress(nil, Ch);
 end;
 
@@ -376,7 +376,7 @@ end;
 procedure TForm1.ShutdownClick(Sender: TObject);
 begin
   try
-    Client.WriteLn('SHUTDOWN')
+    Client.WriteLn('SHUTDOWN');
   except
   end;
 end;
