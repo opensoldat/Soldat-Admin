@@ -167,10 +167,10 @@ end;
 
 procedure TForm1.ClientConnected(Sender: TObject);
 begin
- {try
+ try
  Client.WriteLn(Pass.Text);
  except
- end;     }
+ end;
  Connect.Caption:= 'Disconnect';
 
  Refresh.Enabled:= true;
