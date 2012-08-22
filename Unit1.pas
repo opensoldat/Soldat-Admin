@@ -195,6 +195,7 @@ begin
     if Msg='REFRESH' then
     begin
     // Memo.Lines.Add('Receiving server state...');
+     Client.ReadTimeout := 2000;
      Client.ReadBuffer(RefreshMsg, sizeof(RefreshMsg));
 
      for i:= 1 to 32 do
