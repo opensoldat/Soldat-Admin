@@ -365,13 +365,6 @@ object Form1: TForm1
       OnClick = ExitButtonClick
     end
   end
-  object Client: TIdTCPClient
-    OnDisconnected = ClientDisconnected
-    OnConnected = ClientConnected
-    Port = 23073
-    Left = 56
-    Top = 72
-  end
   object Timer: TTimer
     Interval = 500
     OnTimer = TimerTimer

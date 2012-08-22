@@ -20,7 +20,6 @@ const
    
 type
   TForm1 = class(TForm)
-    Client: TIdTCPClient;
     Memo: TMemo;
     Timer: TTimer;
     Cmd: TEdit;
@@ -101,6 +100,7 @@ var
 
   LastCmd : string = '';
 
+  Client: TIdTCPClient;
 
 implementation
 
@@ -192,7 +192,6 @@ begin
   if Msg <> '' then
   begin
    //////////REFRESH//////////////////////////
-
     if Msg='REFRESH' then
     begin
     // Memo.Lines.Add('Receiving server state...');
@@ -379,6 +378,13 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+  Client := TIdTCPClient.Create(nil);
+  Client.OnConnected := ClientConnected;
+  Client.OnDisconnected := ClientDisconnected;
+  Client.BoundIP := '0';
+  Client.Port := 23073;
+  Client.ReadTimeout := -1;
+
  LoadConfig(ExtractFilePath(Application.ExeName)+'admin.ini');
 end;
 
