@@ -184,10 +184,8 @@ begin
 
   if Msg <> '' then
   begin
-    //////////REFRESH//////////////////////////
     if Msg = 'REFRESH' then
     begin
-      // Memo.Lines.Add('Receiving server state...');
       Client.ReadTimeout := 2000;
       Client.IOHandler.ReadBytes(Buffer, SizeOf (RefreshMsg), False);
       BytesToRaw(Buffer, RefreshMsg, SizeOf (RefreshMsg));
@@ -226,10 +224,8 @@ begin
         5: GameMode.Caption := 'Game Mode: INF';
       end;
 
-      // Memo.Lines.Add('Server state refreshed');
       Exit;
     end;
-    //////////REFRESH//////////////////////////
 
     Memo.Lines.Add(Msg);
     if Msg = 'Invalid server password. Cannot login.' then
