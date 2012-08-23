@@ -12,10 +12,9 @@ unit Unit1;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, ComCtrls, Menus,
-  IdBaseComponent, IdComponent, IdTCPServer, IdTCPConnection, IdTCPClient,
-  IdGlobal,
+  Windows, SysUtils, Classes, Controls, Forms, StdCtrls, ExtCtrls, ComCtrls,
+  Menus,
+  IdTCPClient, IdGlobal,
   IniFiles;
 
 const
