@@ -269,6 +269,7 @@ begin
       Cmd.Text := '';
     except
     end;
+    Key := #0;  // disable beep sound
   end;
 
   if Key = #8 then
