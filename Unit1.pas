@@ -196,6 +196,7 @@ begin
       Client.ReadTimeout := 2000;
       Client.ReadBuffer(RefreshMsg, SizeOf(RefreshMsg));
 
+      PlayerList.Clear;
       for I := 1 to 32 do
       if RefreshMsg.Team[I] < 5 then
       begin
@@ -292,8 +293,6 @@ end;
 
 procedure TForm1.RefreshClick(Sender: TObject);
 begin
-  PlayerList.Clear;
-
   try
     Client.WriteLn('REFRESH');
   except
