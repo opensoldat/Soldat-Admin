@@ -230,8 +230,8 @@ begin
         5: GameMode.Caption := 'Game Mode: INF';
       end;
 
-     // Memo.Lines.Add('Server state refreshed');
-     Exit;
+      // Memo.Lines.Add('Server state refreshed');
+      Exit;
     end;
     //////////REFRESH//////////////////////////
 
