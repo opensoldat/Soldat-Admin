@@ -123,16 +123,16 @@ object Form1: TForm1
   TextHeight = 13
   object Label1: TLabel
     Left = 0
-    Top = 384
+    Top = 388
     Width = 83
     Height = 13
     Caption = 'Server command:'
   end
   object Memo: TMemo
     Left = 0
-    Top = 56
+    Top = 45
     Width = 345
-    Height = 329
+    Height = 344
     Color = clBlack
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clLime
@@ -145,7 +145,7 @@ object Form1: TForm1
   end
   object Cmd: TEdit
     Left = 0
-    Top = 400
+    Top = 402
     Width = 345
     Height = 21
     TabOrder = 1
@@ -153,43 +153,43 @@ object Form1: TForm1
   end
   object GroupBox1: TGroupBox
     Left = 352
-    Top = 50
-    Width = 233
-    Height = 375
+    Top = 44
+    Width = 237
+    Height = 380
     Caption = 'Game:'
     TabOrder = 2
     object MapName: TLabel
-      Left = 104
-      Top = 296
+      Left = 102
+      Top = 300
       Width = 24
       Height = 13
       Caption = 'Map:'
     end
     object Time: TLabel
-      Left = 104
-      Top = 312
+      Left = 102
+      Top = 316
       Width = 23
       Height = 13
       Caption = 'Time'
     end
     object Limit: TLabel
-      Left = 104
-      Top = 328
+      Left = 102
+      Top = 332
       Width = 55
       Height = 13
       Caption = 'Score Limit:'
     end
     object GameMode: TLabel
-      Left = 104
-      Top = 344
+      Left = 102
+      Top = 348
       Width = 61
       Height = 13
       Caption = 'Game Mode:'
     end
     object PlayerList: TListView
-      Left = 8
-      Top = 48
-      Width = 217
+      Left = 6
+      Top = 58
+      Width = 225
       Height = 233
       Columns = <
         item
@@ -230,8 +230,8 @@ object Form1: TForm1
       OnMouseDown = PlayerListMouseDown
     end
     object GroupBox3: TGroupBox
-      Left = 8
-      Top = 288
+      Left = 6
+      Top = 294
       Width = 89
       Height = 81
       Caption = 'Team scores:'
@@ -266,8 +266,8 @@ object Form1: TForm1
       end
     end
     object Refresh: TButton
-      Left = 40
-      Top = 8
+      Left = 6
+      Top = 15
       Width = 75
       Height = 25
       Caption = 'Refresh'
@@ -276,17 +276,17 @@ object Form1: TForm1
       OnClick = RefreshClick
     end
     object Auto: TCheckBox
-      Left = 40
-      Top = 32
+      Left = 6
+      Top = 41
       Width = 113
       Height = 17
       Caption = 'Auto (every 5 sec)'
       TabOrder = 3
     end
     object Shutdown: TButton
-      Left = 168
-      Top = 8
-      Width = 57
+      Left = 156
+      Top = 15
+      Width = 75
       Height = 25
       Caption = 'Shutdown'
       Enabled = False
@@ -297,58 +297,58 @@ object Form1: TForm1
   object GroupBox2: TGroupBox
     Left = 0
     Top = 0
-    Width = 585
-    Height = 49
+    Width = 589
+    Height = 44
     Caption = 'Remote Server:'
     TabOrder = 3
     object Label3: TLabel
-      Left = 8
-      Top = 24
-      Width = 10
+      Left = 7
+      Top = 21
+      Width = 13
       Height = 13
-      Caption = 'IP'
+      Caption = 'IP:'
     end
     object Label4: TLabel
       Left = 136
-      Top = 24
-      Width = 19
+      Top = 21
+      Width = 22
       Height = 13
-      Caption = 'Port'
+      Caption = 'Port:'
     end
     object Label2: TLabel
-      Left = 208
-      Top = 24
+      Left = 210
+      Top = 21
       Width = 49
       Height = 13
       Caption = 'Password:'
     end
     object Host: TEdit
       Left = 24
-      Top = 24
+      Top = 17
       Width = 105
       Height = 21
       TabOrder = 0
       Text = '127.0.0.1'
     end
     object Port: TEdit
-      Left = 160
-      Top = 24
+      Left = 161
+      Top = 17
       Width = 41
       Height = 21
       TabOrder = 1
       Text = '23073'
     end
     object Pass: TEdit
-      Left = 264
-      Top = 24
+      Left = 263
+      Top = 17
       Width = 81
       Height = 21
       PasswordChar = '*'
       TabOrder = 2
     end
     object Connect: TButton
-      Left = 376
-      Top = 16
+      Left = 358
+      Top = 12
       Width = 97
       Height = 27
       Caption = 'Connect'
@@ -356,9 +356,9 @@ object Form1: TForm1
       OnClick = ConnectClick
     end
     object ExitButton: TButton
-      Left = 504
-      Top = 16
-      Width = 73
+      Left = 486
+      Top = 12
+      Width = 97
       Height = 27
       Caption = 'Exit'
       TabOrder = 4
@@ -368,12 +368,12 @@ object Form1: TForm1
   object Timer: TTimer
     Interval = 500
     OnTimer = TimerTimer
-    Left = 24
-    Top = 72
+    Left = 12
+    Top = 61
   end
   object PlayerPopup: TPopupMenu
-    Left = 432
-    Top = 160
+    Left = 542
+    Top = 280
     object Kick1: TMenuItem
       Caption = 'Kick'
       OnClick = Kick1Click
@@ -390,7 +390,7 @@ object Form1: TForm1
   object RefreshTimer: TTimer
     Interval = 5000
     OnTimer = RefreshTimerTimer
-    Left = 144
-    Top = 80
+    Left = 44
+    Top = 61
   end
 end
