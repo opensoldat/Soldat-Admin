@@ -72,6 +72,7 @@ type
     procedure SaveConfig(Filename: string);
     procedure LoadConfig(Filename: string);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure DoCurrentPlayerAction(Name: string);
   private
     { Private declarations }
   public
@@ -311,7 +312,7 @@ begin
   end;
 end;
 
-procedure TForm1.Kick1Click(Sender: TObject);
+procedure TForm1.DoCurrentPlayerAction(Name: string);
 var
   I: Integer;
   S: string;
@@ -325,47 +326,24 @@ begin
 
   S := PlayerList.Items[I].Caption;
 
-  Cmd.Text:= '/kick ' + S;
+  Cmd.Text:= Name + ' ' + S;
   Ch := #13;
   CmdKeyPress(nil, Ch);
+end;
+
+procedure TForm1.Kick1Click(Sender: TObject);
+begin
+  DoCurrentPlayerAction('/kick');
 end;
 
 procedure TForm1.Admin1Click(Sender: TObject);
-var
-  I: Integer;
-  S: string;
-  Ch: Char;
 begin
-  if PlayerList.Items.Count = 0 then
-    Exit;
-  I := PlayerList.ItemIndex;
-  if (I < 0) or (I > (PlayerList.Items.Count - 1)) then
-    Exit;
-
-  S := PlayerList.Items[I].Caption;
-
-  Cmd.Text := '/adm ' + S;
-  Ch := #13;
-  CmdKeyPress(nil, Ch);
+  DoCurrentPlayerAction('/adm');
 end;
 
 procedure TForm1.Ban1Click(Sender: TObject);
-var
-  I: Integer;
-  S: string;
-  Ch: Char;
 begin
-  if PlayerList.Items.Count = 0 then
-    Exit;
-  I := PlayerList.ItemIndex;
-  if (I < 0) or (I > (PlayerList.Items.Count - 1)) then
-    Exit;
-
-  S := PlayerList.Items[I].Caption;
-
-  Cmd.Text:= '/ban ' + S;
-  Ch := #13;
-  CmdKeyPress(nil, Ch);
+  DoCurrentPlayerAction('/ban');
 end;
 
 procedure TForm1.RefreshTimerTimer(Sender: TObject);
