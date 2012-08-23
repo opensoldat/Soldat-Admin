@@ -111,9 +111,6 @@ implementation
 procedure TForm1.SaveConfig(Filename: string);
 var
   Ini: TIniFile;
-  Conf: TStringList;
-  S: string;
-  I: Longint;
 begin
   Ini := TIniFile.Create(Filename);
   Ini.WriteString('ADMIN', 'IP', Host.Text);
@@ -125,8 +122,6 @@ procedure TForm1.LoadConfig(Filename: string);
 var
   Ini: TMemIniFile;
   Conf: TStringList;
-  S: string;
-  I: Longint;
 begin
   Conf := TStringList.Create;
   Ini := TMemIniFile.Create(Filename);
@@ -177,7 +172,7 @@ end;
 
 procedure TForm1.TimerTimer(Sender: TObject);
 var
-  Com, Msg: string;
+  Msg: string;
   ListItem: TListItem;
   I: Integer;
   Buffer: TIdBytes;
