@@ -88,7 +88,7 @@ RemoteSymbols=0
 MinStackSize=16384
 MaxStackSize=1048576
 ImageBase=4194304
-ExeDescription=RemObjects Pascal Script - Core Package
+ExeDescription=Soldat Admin
 [Directories]
 OutputDir=
 UnitOutputDir=
@@ -108,10 +108,10 @@ DebugCWD=
 [Version Info]
 IncludeVerInfo=1
 AutoIncBuild=0
-MajorVer=3
-MinorVer=0
-Release=57
-Build=991
+MajorVer=1
+MinorVer=2
+Release=0
+Build=0
 Debug=0
 PreRelease=0
 Special=0
@@ -120,13 +120,16 @@ DLL=0
 Locale=1033
 CodePage=1252
 [Version Info Keys]
-CompanyName=RemObjects Software
-FileDescription=
-FileVersion=3.0.57.991
+CompanyName=
+FileDescription=Soldat Admin
+FileVersion=1.2.0.0
 InternalName=
 LegalCopyright=
 LegalTrademarks=
 OriginalFilename=
-ProductName=Pascal Script
-ProductVersion=3.0.57.991
-CompileDate=Friday, February 24, 2012 1:33 PM
+ProductName=Soldat Admin
+ProductVersion=1.2.0.0
+CompileDate=
+[HistoryLists\hlUnitAliases]
+Count=1
+Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
