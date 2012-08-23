@@ -15,6 +15,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls, ComCtrls, Menus,
   IdBaseComponent, IdComponent, IdTCPServer, IdTCPConnection, IdTCPClient,
+  IdGlobal,
   IniFiles;
 
 const
@@ -166,7 +167,7 @@ end;
 procedure TForm1.ClientConnected(Sender: TObject);
 begin
   try
-    Client.WriteLn(Pass.Text);
+    Client.IOHandler.WriteLn(Pass.Text);
   except
   end;
   Connect.Caption := 'Disconnect';
@@ -180,11 +181,12 @@ var
   Com, Msg: string;
   ListItem: TListItem;
   I: Integer;
+  Buffer: TIdBytes;
 begin
   if not Client.Connected then
     Exit;
 
-  Msg := Client.ReadLn('', 5);
+  Msg := Client.IOHandler.ReadLn('', 5);
 
   if Msg <> '' then
   begin
@@ -193,7 +195,8 @@ begin
     begin
       // Memo.Lines.Add('Receiving server state...');
       Client.ReadTimeout := 2000;
-      Client.ReadBuffer(RefreshMsg, SizeOf(RefreshMsg));
+      Client.IOHandler.ReadBytes(Buffer, SizeOf (RefreshMsg), False);
+      BytesToRaw(Buffer, RefreshMsg, SizeOf (RefreshMsg));
 
       PlayerList.Clear;
       for I := 1 to MAX_PLAYERS do
@@ -263,7 +266,7 @@ begin
   begin
     try
       if Client.Connected then
-        Client.WriteLn(Cmd.Text)
+        Client.IOHandler.WriteLn(Cmd.Text)
       else
         Memo.Lines.Add(Cmd.Text);
       LastCmd := Cmd.Text;
@@ -294,7 +297,7 @@ procedure TForm1.RefreshClick(Sender: TObject);
 begin
   try
     if Client.Connected then
-      Client.WriteLn('REFRESH');
+      Client.IOHandler.WriteLn('REFRESH');
   except
   end;
 end;
@@ -356,7 +359,7 @@ end;
 procedure TForm1.ShutdownClick(Sender: TObject);
 begin
   try
-    Client.WriteLn('SHUTDOWN');
+    Client.IOHandler.WriteLn('SHUTDOWN');
   except
   end;
 end;
@@ -366,7 +369,6 @@ begin
   Client := TIdTCPClient.Create(nil);
   Client.OnConnected := ClientConnected;
   Client.OnDisconnected := ClientDisconnected;
-  Client.BoundIP := '0';
   Client.Port := 23073;
   Client.ReadTimeout := -1;
 
