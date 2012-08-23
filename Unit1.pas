@@ -295,7 +295,8 @@ end;
 procedure TForm1.RefreshClick(Sender: TObject);
 begin
   try
-    Client.WriteLn('REFRESH');
+    if Client.Connected then
+      Client.WriteLn('REFRESH');
   except
   end;
 end;
