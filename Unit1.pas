@@ -270,9 +270,8 @@ begin
     except
     end;
     Key := #0;  // disable beep sound
-  end;
-
-  if Key = #8 then
+  end
+  else if Key = #8 then
   begin
     if Cmd.Text = '' then
       Cmd.Text := LastCmd;
