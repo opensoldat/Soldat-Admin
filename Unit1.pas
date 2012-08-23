@@ -12,9 +12,12 @@ unit Unit1;
 interface
 
 uses
+  // general
   Windows, SysUtils, Classes, Controls, Forms, StdCtrls, ExtCtrls, ComCtrls,
   Menus,
+  // network
   IdTCPClient, IdGlobal,
+  // other
   IniFiles;
 
 const
@@ -80,7 +83,7 @@ type
     { Public declarations }
   end;
 
-
+  // binary packets
   TMsg_Refresh = packed record
     Name: array[1..MAX_PLAYERS] of string[PLAYERNAME_CHARS];
     Team: array[1..MAX_PLAYERS] of Byte;
@@ -356,6 +359,7 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+  // dynamically created to avoid design time packages
   Client := TIdTCPClient.Create(nil);
   Client.OnConnected := ClientConnected;
   Client.OnDisconnected := ClientDisconnected;
