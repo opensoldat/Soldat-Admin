@@ -114,12 +114,10 @@ var
   S: string;
   I: Longint;
 begin
-  conf := TStringList.Create;
   Ini := TIniFile.Create(Filename);
   Ini.WriteString('ADMIN', 'IP', Host.Text);
   Ini.WriteString('ADMIN', 'Port', Port.Text);
   Ini.Free;
-  Conf.Free;
 end;
 
 procedure TForm1.LoadConfig(Filename: string);
@@ -259,8 +257,11 @@ begin
 end;
 
 procedure TForm1.CmdKeyPress(Sender: TObject; var Key: Char);
+const
+  ENTER = #13;
+  BACKSPACE = #8;
 begin
-  if Key = #13 then
+  if Key = ENTER then
   begin
     try
       if Client.Connected then
@@ -273,7 +274,7 @@ begin
     end;
     Key := #0;  // disable beep sound
   end
-  else if Key = #8 then
+  else if Key = BACKSPACE then
   begin
     if Cmd.Text = '' then
       Cmd.Text := LastCmd;
@@ -316,6 +317,8 @@ var
   I: Integer;
   S: string;
   Ch: Char;
+const
+  ENTER = #13;
 begin
   if PlayerList.Items.Count = 0 then
     Exit;
@@ -326,7 +329,7 @@ begin
   S := PlayerList.Items[I].Caption;
 
   Cmd.Text:= Name + ' ' + S;
-  Ch := #13;
+  Ch := ENTER;
   CmdKeyPress(nil, Ch);
 end;
 
