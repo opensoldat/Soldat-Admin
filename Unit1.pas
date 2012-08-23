@@ -250,10 +250,7 @@ end;
 
 procedure TForm1.ClientDisconnected(Sender: TObject);
 begin
-  try
-    Client.WriteLn('Admin disconnected');
-  except
-  end;
+  Memo.Lines.Add('Admin disconnected');
 end;
 
 procedure TForm1.CmdKeyPress(Sender: TObject; var Key: Char);
