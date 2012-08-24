@@ -6,3 +6,6 @@
 *.cfg
 *.dsk
 *.dsm
+*.o
+*.or
+*.ppu
