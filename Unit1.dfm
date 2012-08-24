@@ -222,7 +222,6 @@ object Form1: TForm1
           Caption = 'Number'
           MinWidth = 50
         end>
-      FlatScrollBars = True
       ReadOnly = True
       PopupMenu = PlayerPopup
       TabOrder = 0
