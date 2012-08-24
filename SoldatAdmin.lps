@@ -6,13 +6,14 @@
     <BuildModes Active="Windows i386 release"/>
     <Units Count="4">
       <Unit0>
-        <Filename Value="Client.dpr"/>
+        <Filename Value="SoldatAdmin.dpr"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="SoldatAdmin"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="9" Y="2"/>
+        <CursorPos X="20" Y="10"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -49,5 +50,4 @@
     </General>
     <JumpHistory Count="0" HistoryIndex="-1"/>
   </ProjectSession>
-  <SkipCheckLCLInterfaces Value="True"/>
 </CONFIG>

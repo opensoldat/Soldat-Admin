@@ -7,7 +7,7 @@
 {       free to distribute and modify                        }
 {************************************************************}
 
-program Client;
+program SoldatAdmin;
 
 {$IFDEF FPC}{$MODE Delphi}{$ENDIF}
 
