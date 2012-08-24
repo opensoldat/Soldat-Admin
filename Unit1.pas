@@ -9,12 +9,14 @@
 
 unit Unit1;
 
+{$IFDEF FPC}{$MODE Delphi}{$ENDIF}
+
 interface
 
 uses
   // general
-  Windows, SysUtils, Classes, Controls, Forms, StdCtrls, ExtCtrls, ComCtrls,
-  Menus,
+  {$IFNDEF FPC}Windows,{$ELSE}LCLIntf, LCLType, LMessages,{$ENDIF}
+  SysUtils, Classes, Controls, Forms, StdCtrls, ExtCtrls, ComCtrls, Menus,
   // network
   IdTCPClient, IdGlobal,
   // other
@@ -108,7 +110,11 @@ var
 
 implementation
 
-{$R *.dfm}
+{$IFNDEF FPC}
+  {$R *.dfm}
+{$ELSE}
+  {$R *.lfm}
+{$ENDIF}
 
 
 procedure TForm1.SaveConfig(Filename: string);

@@ -367,11 +367,11 @@ object Form1: TForm1
   object Timer: TTimer
     Interval = 500
     OnTimer = TimerTimer
-    Left = 12
-    Top = 61
+    Left = 16
+    Top = 60
   end
   object PlayerPopup: TPopupMenu
-    Left = 542
+    Left = 544
     Top = 280
     object Kick1: TMenuItem
       Caption = 'Kick'
@@ -389,7 +389,7 @@ object Form1: TForm1
   object RefreshTimer: TTimer
     Interval = 5000
     OnTimer = RefreshTimerTimer
-    Left = 44
-    Top = 61
+    Left = 48
+    Top = 60
   end
 end

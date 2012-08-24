@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <Compiler Value="C:\freepascal\fpc\2.6.1\bin\i386-win32\fpc.exe" Date="1084302775"/>
+  <Params Value=" -MDelphi -Scghi -O1 -g -gl -WG -vewnhi -l -FiC:\Users\start\Libs\Indy10\Lib\Protocols -FuC:\Users\start\Libs\Indy10\Lib\Protocols -FuC:\Users\start\Libs\Indy10\Lib\Core -FuC:\Users\start\Libs\Indy10\Lib\Security -FuC:\Users\start\Libs\Indy10\Lib\SuperCore -FuC:\Users\start\Libs\Indy10\Lib\System -FuC:\freepascal\laz\lcl\units\i386-win32\win32 -FuC:\freepascal\laz\lcl\units\i386-win32 -FuC:\freepascal\laz\components\lazutils\lib\i386-win32 -FuC:\freepascal\laz\packager\units\i386-win32 -FuC:\Users\start\Projects\Delphi\soldatadmin\ -dLCL -dLCLwin32 Client.dpr"/>
+</CONFIG>

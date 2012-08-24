@@ -1,0 +1,307 @@
+object Form1: TForm1
+  Left = 314
+  Height = 425
+  Top = 131
+  Width = 590
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'Soldat Admin 1.2'
+  ClientHeight = 425
+  ClientWidth = 590
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  OnClose = FormClose
+  OnCreate = FormCreate
+  Position = poDesktopCenter
+  LCLVersion = '1.1'
+  object Label1: TLabel
+    Left = 0
+    Height = 14
+    Top = 388
+    Width = 84
+    Caption = 'Server command:'
+    ParentColor = False
+  end
+  object Memo: TMemo
+    Left = 0
+    Height = 344
+    Top = 45
+    Width = 345
+    Color = clBlack
+    Font.Color = clLime
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    ParentFont = False
+    ScrollBars = ssVertical
+    TabOrder = 0
+  end
+  object Cmd: TEdit
+    Left = 0
+    Height = 21
+    Top = 402
+    Width = 345
+    OnKeyPress = CmdKeyPress
+    TabOrder = 1
+  end
+  object GroupBox1: TGroupBox
+    Left = 352
+    Height = 381
+    Top = 43
+    Width = 237
+    Caption = 'Game:'
+    ClientHeight = 363
+    ClientWidth = 233
+    TabOrder = 2
+    object MapName: TLabel
+      Left = 100
+      Height = 14
+      Top = 285
+      Width = 25
+      Caption = 'Map:'
+      ParentColor = False
+    end
+    object Time: TLabel
+      Left = 100
+      Height = 14
+      Top = 301
+      Width = 24
+      Caption = 'Time'
+      ParentColor = False
+    end
+    object Limit: TLabel
+      Left = 100
+      Height = 14
+      Top = 317
+      Width = 56
+      Caption = 'Score Limit:'
+      ParentColor = False
+    end
+    object GameMode: TLabel
+      Left = 100
+      Height = 14
+      Top = 333
+      Width = 62
+      Caption = 'Game Mode:'
+      ParentColor = False
+    end
+    object PlayerList: TListView
+      Left = 4
+      Height = 233
+      Top = 43
+      Width = 225
+      Columns = <      
+        item
+          Caption = 'Player Name'
+          MinWidth = 125
+          Width = 125
+        end      
+        item
+          Caption = 'Score'
+          MinWidth = 50
+        end      
+        item
+          Caption = 'Deaths'
+        end      
+        item
+          Caption = 'Ping'
+          MinWidth = 50
+        end      
+        item
+          Caption = 'Team'
+          MinWidth = 40
+          Width = 40
+        end      
+        item
+          Caption = 'IP'
+          MinWidth = 100
+          Width = 100
+        end      
+        item
+          Caption = 'Number'
+          MinWidth = 50
+        end>
+      PopupMenu = PlayerPopup
+      ReadOnly = True
+      TabOrder = 0
+      ViewStyle = vsReport
+      OnMouseDown = PlayerListMouseDown
+    end
+    object GroupBox3: TGroupBox
+      Left = 4
+      Height = 82
+      Top = 278
+      Width = 89
+      Caption = 'Team scores:'
+      ClientHeight = 64
+      ClientWidth = 85
+      TabOrder = 1
+      object team1: TLabel
+        Left = 6
+        Height = 14
+        Top = 1
+        Width = 30
+        Caption = 'team1'
+        ParentColor = False
+      end
+      object team2: TLabel
+        Left = 6
+        Height = 14
+        Top = 17
+        Width = 30
+        Caption = 'team2'
+        ParentColor = False
+      end
+      object team3: TLabel
+        Left = 6
+        Height = 14
+        Top = 33
+        Width = 30
+        Caption = 'team3'
+        ParentColor = False
+      end
+      object team4: TLabel
+        Left = 6
+        Height = 14
+        Top = 49
+        Width = 30
+        Caption = 'team4'
+        ParentColor = False
+      end
+    end
+    object Refresh: TButton
+      Left = 4
+      Height = 25
+      Top = 0
+      Width = 75
+      Caption = 'Refresh'
+      Enabled = False
+      OnClick = RefreshClick
+      TabOrder = 2
+    end
+    object Auto: TCheckBox
+      Left = 4
+      Height = 17
+      Top = 26
+      Width = 106
+      Caption = 'Auto (every 5 sec)'
+      TabOrder = 3
+    end
+    object Shutdown: TButton
+      Left = 154
+      Height = 25
+      Top = 0
+      Width = 75
+      Caption = 'Shutdown'
+      Enabled = False
+      OnClick = ShutdownClick
+      TabOrder = 4
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 0
+    Height = 45
+    Top = -1
+    Width = 589
+    Caption = 'Remote Server:'
+    ClientHeight = 27
+    ClientWidth = 585
+    TabOrder = 3
+    object Label3: TLabel
+      Left = 5
+      Height = 14
+      Top = 6
+      Width = 14
+      Caption = 'IP:'
+      ParentColor = False
+    end
+    object Label4: TLabel
+      Left = 134
+      Height = 14
+      Top = 6
+      Width = 23
+      Caption = 'Port:'
+      ParentColor = False
+    end
+    object Label2: TLabel
+      Left = 208
+      Height = 14
+      Top = 6
+      Width = 50
+      Caption = 'Password:'
+      ParentColor = False
+    end
+    object Host: TEdit
+      Left = 22
+      Height = 21
+      Top = 2
+      Width = 105
+      TabOrder = 0
+      Text = '127.0.0.1'
+    end
+    object Port: TEdit
+      Left = 159
+      Height = 21
+      Top = 2
+      Width = 41
+      TabOrder = 1
+      Text = '23073'
+    end
+    object Pass: TEdit
+      Left = 261
+      Height = 21
+      Top = 2
+      Width = 81
+      EchoMode = emPassword
+      PasswordChar = '*'
+      TabOrder = 2
+    end
+    object Connect: TButton
+      Left = 356
+      Height = 27
+      Top = -3
+      Width = 97
+      Caption = 'Connect'
+      OnClick = ConnectClick
+      TabOrder = 3
+    end
+    object ExitButton: TButton
+      Left = 484
+      Height = 27
+      Top = -3
+      Width = 97
+      Caption = 'Exit'
+      OnClick = ExitButtonClick
+      TabOrder = 4
+    end
+  end
+  object Timer: TTimer
+    Interval = 500
+    OnTimer = TimerTimer
+    left = 16
+    top = 60
+  end
+  object PlayerPopup: TPopupMenu
+    left = 544
+    top = 280
+    object Kick1: TMenuItem
+      Caption = 'Kick'
+      OnClick = Kick1Click
+    end
+    object Ban1: TMenuItem
+      Caption = 'Ban'
+      OnClick = Ban1Click
+    end
+    object Admin1: TMenuItem
+      Caption = 'Admin'
+      OnClick = Admin1Click
+    end
+  end
+  object RefreshTimer: TTimer
+    Interval = 5000
+    OnTimer = RefreshTimerTimer
+    left = 48
+    top = 60
+  end
+end
