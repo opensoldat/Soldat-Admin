@@ -226,7 +226,6 @@ object Form1: TForm1
       PopupMenu = PlayerPopup
       TabOrder = 0
       ViewStyle = vsReport
-      OnMouseDown = PlayerListMouseDown
     end
     object GroupBox3: TGroupBox
       Left = 6

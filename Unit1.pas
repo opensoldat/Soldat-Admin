@@ -67,8 +67,6 @@ type
     procedure CmdKeyPress(Sender: TObject; var Key: Char);
     procedure ExitButtonClick(Sender: TObject);
     procedure RefreshClick(Sender: TObject);
-    procedure PlayerListMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
     procedure Kick1Click(Sender: TObject);
     procedure Admin1Click(Sender: TObject);
     procedure Ban1Click(Sender: TObject);
@@ -298,18 +296,6 @@ begin
     if Client.Connected then
       Client.IOHandler.WriteLn('REFRESH');
   except
-  end;
-end;
-
-procedure TForm1.PlayerListMouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-var
-  M: TPoint;
-begin
-  if Button = mbRight then
-  begin
-    GetCursorPos(M);
-    PlayerList.PopupMenu.Popup(M.x, M.y);
   end;
 end;
 
