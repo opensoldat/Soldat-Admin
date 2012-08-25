@@ -222,7 +222,9 @@ object Form1: TForm1
           Caption = 'Number'
           MinWidth = 50
         end>
+      GridLines = True
       ReadOnly = True
+      RowSelect = True
       PopupMenu = PlayerPopup
       TabOrder = 0
       ViewStyle = vsReport
