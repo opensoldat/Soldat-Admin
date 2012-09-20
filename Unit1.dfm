@@ -140,6 +140,7 @@ object Form1: TForm1
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
+    ReadOnly = True
     ScrollBars = ssVertical
     TabOrder = 0
   end
