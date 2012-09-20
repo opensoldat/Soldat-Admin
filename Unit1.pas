@@ -25,6 +25,11 @@ uses
 const
   PLAYERNAME_CHARS = 24;
   MAX_PLAYERS = 32;
+  MAX_TEAMS = 4;
+  TEAM_SPECTATOR = 5;
+  MAPNAME_CHARS = 16;
+  DEFAULT_PORT = 23073;
+  CONFIG_FILE = 'admin.ini';
    
 type
   TForm1 = class(TForm)
@@ -92,8 +97,8 @@ type
     Ping: array[1..MAX_PLAYERS] of Byte;
     Number: array[1..MAX_PLAYERS] of Byte;
     IP: array[1..MAX_PLAYERS,1..4] of Byte;
-    TeamScore: array[1..4] of Word;
-    MapName: string[16];
+    TeamScore: array[1..MAX_TEAMS] of Word;
+    MapName: string[MAPNAME_CHARS];
     TimeLimit, CurrentTime: Integer;
     KillLimit: Word;
     GameStyle: Byte;
@@ -183,23 +188,26 @@ var
   ListItem: TListItem;
   I: Integer;
   Buffer: TIdBytes;
+const
+  TIMEOUT = 5;
+  REFRESH_TIMEOUT = 2000;
 begin
   if not Client.Connected then
     Exit;
 
-  Msg := Client.IOHandler.ReadLn('', 5);
+  Msg := Client.IOHandler.ReadLn('', TIMEOUT);
 
   if Msg <> '' then
   begin
     if Msg = 'REFRESH' then
     begin
-      Client.ReadTimeout := 2000;
+      Client.ReadTimeout := REFRESH_TIMEOUT;
       Client.IOHandler.ReadBytes(Buffer, SizeOf (RefreshMsg), False);
       BytesToRaw(Buffer, RefreshMsg, SizeOf (RefreshMsg));
 
       PlayerList.Clear;
       for I := 1 to MAX_PLAYERS do
-      if RefreshMsg.Team[I] < 5 then
+      if RefreshMsg.Team[I] < TEAM_SPECTATOR then
       begin
         ListItem := PlayerList.Items.Add;
         ListItem.Caption := RefreshMsg.Name[I];
@@ -220,7 +228,7 @@ begin
       Team3.Caption := 'Charlie: ' + IntToStr(RefreshMsg.TeamScore[3]);
       Team4.Caption := 'Delta: ' + IntToStr(RefreshMsg.TeamScore[4]);
       Time.Caption := 'Time: ' + IntToStr((RefreshMsg.CurrentTime div 3600)) +
-        '/' + IntToStr((RefreshMsg.TimeLimit div 3600)) ;
+        '/' + IntToStr((RefreshMsg.TimeLimit div 3600));
       Limit.Caption := 'Score Limit: ' + IntToStr(RefreshMsg.KillLimit);
       case RefreshMsg.GameStyle of
         0: GameMode.Caption := 'Game Mode: DM';
@@ -258,6 +266,7 @@ procedure TForm1.CmdKeyPress(Sender: TObject; var Key: Char);
 const
   ENTER = #13;
   BACKSPACE = #8;
+  NONE = #0;
 begin
   if Key = ENTER then
   begin
@@ -270,7 +279,7 @@ begin
       Cmd.Text := '';
     except
     end;
-    Key := #0;  // disable beep sound
+    Key := NONE;  // disable beep sound
   end
   else if Key = BACKSPACE then
   begin
@@ -286,7 +295,7 @@ begin
       Client.Disconnect;
   except
   end;
-  SaveConfig(ExtractFilePath(Application.ExeName) + 'admin.ini');
+  SaveConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);
   Close;
 end;
 
@@ -355,15 +364,15 @@ begin
   Client := TIdTCPClient.Create(nil);
   Client.OnConnected := ClientConnected;
   Client.OnDisconnected := ClientDisconnected;
-  Client.Port := 23073;
+  Client.Port := DEFAULT_PORT;
   Client.ReadTimeout := -1;
 
-  LoadConfig(ExtractFilePath(Application.ExeName) + 'admin.ini');
+  LoadConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  SaveConfig(ExtractFilePath(Application.ExeName) + 'admin.ini');
+  SaveConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);
 end;
 
 end.
