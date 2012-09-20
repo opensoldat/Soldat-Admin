@@ -9,3 +9,5 @@
 *.o
 *.or
 *.ppu
+*.lps
+*.compiled
