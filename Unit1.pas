@@ -258,7 +258,8 @@ begin
     end;
 
     Memo.Lines.Add(Msg);
-    if Msg = 'Invalid server password. Cannot login.' then
+    if (Msg = 'Invalid server password. Cannot login.') or
+      (Msg = 'Invalid password.') then
     begin
       Connect.Caption := 'Connect';
       Refresh.Enabled := False;
