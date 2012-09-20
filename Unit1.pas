@@ -147,7 +147,10 @@ begin
   Conf := TStringList.Create;
   Ini := TMemIniFile.Create(Filename);
   if not Assigned(Ini) then
+  begin
+    Conf.Free;
     Exit;
+  end;
 
   Ini.ReadSectionValues('ADMIN', Conf);
   Host.Text := Conf.Values['IP'];
