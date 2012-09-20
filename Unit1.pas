@@ -30,7 +30,7 @@ const
   MAPNAME_CHARS = 16;
   DEFAULT_PORT = 23073;
   CONFIG_FILE = 'admin.ini';
-   
+
 type
   TForm1 = class(TForm)
     Memo: TMemo;
@@ -96,7 +96,7 @@ type
     Deaths: array[1..MAX_PLAYERS] of Word;
     Ping: array[1..MAX_PLAYERS] of Byte;
     Number: array[1..MAX_PLAYERS] of Byte;
-    IP: array[1..MAX_PLAYERS,1..4] of Byte;
+    IP: array[1..MAX_PLAYERS, 1..4] of Byte;
     TeamScore: array[1..MAX_TEAMS] of Word;
     MapName: string[MAPNAME_CHARS];
     TimeLimit, CurrentTime: Integer;
@@ -158,7 +158,8 @@ begin
       Client.Connect;
     except
     end;
-  end else
+  end
+  else
   begin
     try
       Client.Disconnect;
@@ -202,25 +203,25 @@ begin
     if Msg = 'REFRESH' then
     begin
       Client.ReadTimeout := REFRESH_TIMEOUT;
-      Client.IOHandler.ReadBytes(Buffer, SizeOf (RefreshMsg), False);
-      BytesToRaw(Buffer, RefreshMsg, SizeOf (RefreshMsg));
+      Client.IOHandler.ReadBytes(Buffer, SizeOf(RefreshMsg), False);
+      BytesToRaw(Buffer, RefreshMsg, SizeOf(RefreshMsg));
 
       PlayerList.Clear;
       for I := 1 to MAX_PLAYERS do
-      if RefreshMsg.Team[I] < TEAM_SPECTATOR then
-      begin
-        ListItem := PlayerList.Items.Add;
-        ListItem.Caption := RefreshMsg.Name[I];
-        ListItem.SubItems.Add(IntToStr(RefreshMsg.Kills[I]));
-        ListItem.SubItems.Add(IntToStr(RefreshMsg.Deaths[I]));
-        ListItem.SubItems.Add(IntToStr(RefreshMsg.Ping[I]));
-        ListItem.SubItems.Add(IntToStr(RefreshMsg.Team[I]));
-        ListItem.SubItems.Add(IntToStr(RefreshMsg.IP[I][1]) + '.' +
-          IntToStr(RefreshMsg.IP[I][2]) + '.' +
-          IntToStr(RefreshMsg.IP[I][3]) + '.' +
-          IntToStr(RefreshMsg.IP[I][4]));
-        ListItem.SubItems.Add(IntToStr(RefreshMsg.Number[I]));
-      end;
+        if RefreshMsg.Team[I] < TEAM_SPECTATOR then
+        begin
+          ListItem := PlayerList.Items.Add;
+          ListItem.Caption := RefreshMsg.Name[I];
+          ListItem.SubItems.Add(IntToStr(RefreshMsg.Kills[I]));
+          ListItem.SubItems.Add(IntToStr(RefreshMsg.Deaths[I]));
+          ListItem.SubItems.Add(IntToStr(RefreshMsg.Ping[I]));
+          ListItem.SubItems.Add(IntToStr(RefreshMsg.Team[I]));
+          ListItem.SubItems.Add(IntToStr(RefreshMsg.IP[I][1]) + '.' +
+            IntToStr(RefreshMsg.IP[I][2]) + '.' +
+            IntToStr(RefreshMsg.IP[I][3]) + '.' +
+            IntToStr(RefreshMsg.IP[I][4]));
+          ListItem.SubItems.Add(IntToStr(RefreshMsg.Number[I]));
+        end;
 
       MapName.Caption := 'Map: ' + RefreshMsg.MapName;
       Team1.Caption := 'Alpha: ' + IntToStr(RefreshMsg.TeamScore[1]);
@@ -318,13 +319,13 @@ const
 begin
   if PlayerList.Items.Count = 0 then
     Exit;
-  I := PlayerList.Itemindex;
+  I := PlayerList.ItemIndex;
   if (I < 0) or (I > (PlayerList.Items.Count - 1)) then
     Exit;
 
   S := PlayerList.Items[I].Caption;
 
-  Cmd.Text:= Name + ' ' + S;
+  Cmd.Text := Name + ' ' + S;
   Ch := ENTER;
   CmdKeyPress(nil, Ch);
 end;
