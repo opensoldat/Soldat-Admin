@@ -119,6 +119,13 @@ implementation
   {$R *.lfm}
 {$ENDIF}
 
+function iif(Condition: Boolean; TrueCase, FalseCase: Variant): Variant;
+begin
+  if Condition then
+    Result := TrueCase
+  else
+    Result := FalseCase;
+end;
 
 procedure TForm1.SaveConfig(Filename: string);
 var
@@ -127,6 +134,8 @@ begin
   Ini := TIniFile.Create(Filename);
   Ini.WriteString('ADMIN', 'IP', Host.Text);
   Ini.WriteString('ADMIN', 'Port', Port.Text);
+  Ini.WriteString('ADMIN', 'Refresh', iif(Auto.Checked, '1', '0'));
+
   Ini.Free;
 end;
 
@@ -143,6 +152,7 @@ begin
   Ini.ReadSectionValues('ADMIN', Conf);
   Host.Text := Conf.Values['IP'];
   Port.Text := Conf.Values['Port'];
+  Auto.Checked := Conf.Values['Refresh'] = '1';
 
   Ini.Free;
   Conf.Free;
