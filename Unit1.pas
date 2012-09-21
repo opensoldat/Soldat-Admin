@@ -173,6 +173,8 @@ const
 begin
   if not Client.Connected then
   begin
+    Connect.Caption := 'Connecting...';
+
     InvalidInput := False;
 
     // clear colors from last connection attempt
@@ -215,6 +217,8 @@ begin
     try
       Client.Connect;
     except
+      Connect.Caption := 'Connect';
+      Memo.Lines.Add('Connection failed');
     end;
   end
   else
