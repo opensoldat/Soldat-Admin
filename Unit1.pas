@@ -18,6 +18,7 @@ uses
   // general
   {$IFNDEF FPC}Windows,{$ELSE}LCLIntf, LCLType, LMessages,{$ENDIF}
   SysUtils, Classes, Controls, Forms, StdCtrls, ExtCtrls, ComCtrls, Menus,
+  Graphics,
   // network
   IdTCPClient, IdGlobal,
   // other
@@ -163,11 +164,54 @@ begin
 end;
 
 procedure TForm1.ConnectClick(Sender: TObject);
+var
+  PortAsNumber: Integer;
+  InvalidInput: Boolean;
+const
+  COLOR_ERROR = TColor($7F7FFF);
+  COLOR_OK = {$IFDEF FPC}clDefault{$ELSE}clWindow{$ENDIF};
 begin
   if not Client.Connected then
   begin
+    InvalidInput := False;
+
+    // clear colors from last connection attempt
+    Host.Color := COLOR_OK;
+    Port.Color := COLOR_OK;
+    Pass.Color := COLOR_OK;
+
+    if Host.Text = '' then
+    begin
+      Host.Color := COLOR_ERROR;
+      InvalidInput := True;
+    end;
+
+    PortAsNumber := StrToIntDef(Port.Text, -1);
+    if PortAsNumber = -1 then
+    begin
+      Port.Color := COLOR_ERROR;
+      InvalidInput := True;
+    end;
+
+    if Pass.Text = '' then
+    begin
+      Pass.Color := COLOR_ERROR;
+      InvalidInput := True;
+    end;
+
+    // avoid edit field update delay
+    Application.HandleMessage;
+
+    if InvalidInput then
+    begin
+      Memo.Lines.Add('Invalid input.');
+      Connect.Enabled := True;
+      Exit;
+    end;
+
     Client.Host := Host.Text;
-    Client.Port := StrToInt(Port.Text);
+    Client.Port := PortAsNumber;
+
     try
       Client.Connect;
     except
