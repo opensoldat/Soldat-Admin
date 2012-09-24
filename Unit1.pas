@@ -16,7 +16,7 @@ interface
 
 uses
   // general
-  {$IFNDEF FPC}Windows,{$ELSE}LCLIntf, LCLType, LMessages,{$ENDIF}
+  {$IFNDEF FPC}Windows,{$ELSE}LCLIntf, LCLType, LMessages, variants,{$ENDIF}
   SysUtils, Classes, Controls, Forms, StdCtrls, ExtCtrls, ComCtrls, Menus,
   Graphics,
   // network
