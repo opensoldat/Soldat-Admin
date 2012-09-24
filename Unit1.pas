@@ -359,7 +359,6 @@ begin
       Client.Disconnect;
   except
   end;
-  SaveConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);
   Close;
 end;
 
