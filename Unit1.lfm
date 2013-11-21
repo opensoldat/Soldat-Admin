@@ -15,7 +15,7 @@ object Form1: TForm1
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDesktopCenter
-  LCLVersion = '1.0.1.3'
+  LCLVersion = '1.0.12.0'
   object Label1: TLabel
     Left = 0
     Height = 14
@@ -239,6 +239,7 @@ object Form1: TForm1
       Height = 21
       Top = 2
       Width = 105
+      OnChange = HostChange
       TabOrder = 0
       Text = '127.0.0.1'
     end
@@ -247,6 +248,7 @@ object Form1: TForm1
       Height = 21
       Top = 2
       Width = 41
+      OnChange = PortChange
       TabOrder = 1
       Text = '23073'
     end
@@ -256,6 +258,7 @@ object Form1: TForm1
       Top = 2
       Width = 81
       EchoMode = emPassword
+      OnChange = PassChange
       PasswordChar = '*'
       TabOrder = 2
     end

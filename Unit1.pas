@@ -32,6 +32,7 @@ const
   MAPNAME_CHARS = 16;
   DEFAULT_PORT = 23073;
   CONFIG_FILE = 'admin.ini';
+  COLOR_OK = {$IFDEF FPC}clDefault{$ELSE}clWindow{$ENDIF};
 
 type
   TForm1 = class(TForm)
@@ -84,6 +85,9 @@ type
     procedure LoadConfig(Filename: string);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DoCurrentPlayerAction(Name: string);
+    procedure HostChange(Sender: TObject);
+    procedure PortChange(Sender: TObject);
+    procedure PassChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -169,7 +173,6 @@ var
   InvalidInput: Boolean;
 const
   COLOR_ERROR = TColor($7F7FFF);
-  COLOR_OK = {$IFDEF FPC}clDefault{$ELSE}clWindow{$ENDIF};
 begin
   if not Client.Connected then
   begin
@@ -436,6 +439,21 @@ end;
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   SaveConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);
+end;
+
+procedure TForm1.HostChange(Sender: TObject);
+begin
+  Host.Color := COLOR_OK;
+end;
+
+procedure TForm1.PortChange(Sender: TObject);
+begin
+  Port.Color := COLOR_OK;
+end;
+
+procedure TForm1.PassChange(Sender: TObject);
+begin
+  Pass.Color := COLOR_OK;
 end;
 
 end.

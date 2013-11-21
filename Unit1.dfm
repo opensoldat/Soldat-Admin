@@ -330,6 +330,7 @@ object Form1: TForm1
       Height = 21
       TabOrder = 0
       Text = '127.0.0.1'
+      OnChange = HostChange
     end
     object Port: TEdit
       Left = 161
@@ -338,6 +339,7 @@ object Form1: TForm1
       Height = 21
       TabOrder = 1
       Text = '23073'
+      OnChange = PortChange
     end
     object Pass: TEdit
       Left = 263
@@ -346,6 +348,7 @@ object Form1: TForm1
       Height = 21
       PasswordChar = '*'
       TabOrder = 2
+      OnChange = PassChange
     end
     object Connect: TButton
       Left = 358
