@@ -87,9 +87,7 @@ type
     procedure LoadConfig(Filename: string);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DoCurrentPlayerAction(Name: string);
-    procedure HostChange(Sender: TObject);
-    procedure PortChange(Sender: TObject);
-    procedure PassChange(Sender: TObject);
+    procedure ServerCredentialsEditChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -457,19 +455,10 @@ begin
   SaveConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);
 end;
 
-procedure TForm1.HostChange(Sender: TObject);
+procedure TForm1.ServerCredentialsEditChange(Sender: TObject);
 begin
-  Host.Color := COLOR_OK;
-end;
-
-procedure TForm1.PortChange(Sender: TObject);
-begin
-  Port.Color := COLOR_OK;
-end;
-
-procedure TForm1.PassChange(Sender: TObject);
-begin
-  Pass.Color := COLOR_OK;
+  if Sender is TEdit then
+    TEdit(Sender).Color := COLOR_OK;
 end;
 
 end.

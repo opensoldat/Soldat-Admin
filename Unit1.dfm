@@ -330,7 +330,7 @@ object Form1: TForm1
       Height = 21
       TabOrder = 0
       Text = '127.0.0.1'
-      OnChange = HostChange
+      OnChange = ServerCredentialsEditChange
       OnKeyPress = ServerCredentialsEditKeyPress
     end
     object Port: TEdit
@@ -340,7 +340,7 @@ object Form1: TForm1
       Height = 21
       TabOrder = 1
       Text = '23073'
-      OnChange = PortChange
+      OnChange = ServerCredentialsEditChange
       OnKeyPress = ServerCredentialsEditKeyPress
     end
     object Pass: TEdit
@@ -350,7 +350,7 @@ object Form1: TForm1
       Height = 21
       PasswordChar = '*'
       TabOrder = 2
-      OnChange = PassChange
+      OnChange = ServerCredentialsEditChange
       OnKeyPress = ServerCredentialsEditKeyPress
     end
     object Connect: TButton

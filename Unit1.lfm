@@ -239,7 +239,7 @@ object Form1: TForm1
       Height = 21
       Top = 2
       Width = 105
-      OnChange = HostChange
+      OnChange = ServerCredentialsEditChange
       OnKeyPress = ServerCredentialsEditKeyPress
       TabOrder = 0
       Text = '127.0.0.1'
@@ -249,7 +249,7 @@ object Form1: TForm1
       Height = 21
       Top = 2
       Width = 41
-      OnChange = PortChange
+      OnChange = ServerCredentialsEditChange
       OnKeyPress = ServerCredentialsEditKeyPress
       TabOrder = 1
       Text = '23073'
@@ -260,7 +260,7 @@ object Form1: TForm1
       Top = 2
       Width = 81
       EchoMode = emPassword
-      OnChange = PassChange
+      OnChange = ServerCredentialsEditChange
       OnKeyPress = ServerCredentialsEditKeyPress
       PasswordChar = '*'
       TabOrder = 2
