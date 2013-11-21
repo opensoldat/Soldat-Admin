@@ -331,6 +331,7 @@ object Form1: TForm1
       TabOrder = 0
       Text = '127.0.0.1'
       OnChange = HostChange
+      OnKeyPress = HostKeyPress
     end
     object Port: TEdit
       Left = 161
@@ -340,6 +341,7 @@ object Form1: TForm1
       TabOrder = 1
       Text = '23073'
       OnChange = PortChange
+      OnKeyPress = PortKeyPress
     end
     object Pass: TEdit
       Left = 263
@@ -349,6 +351,7 @@ object Form1: TForm1
       PasswordChar = '*'
       TabOrder = 2
       OnChange = PassChange
+      OnKeyPress = PassKeyPress
     end
     object Connect: TButton
       Left = 358

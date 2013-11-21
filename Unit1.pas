@@ -35,6 +35,9 @@ const
   COLOR_OK = {$IFDEF FPC}clDefault{$ELSE}clWindow{$ENDIF};
 
 type
+
+  { TForm1 }
+
   TForm1 = class(TForm)
     Memo: TMemo;
     Timer: TTimer;
@@ -70,6 +73,9 @@ type
     Shutdown: TButton;
     procedure ConnectClick(Sender: TObject);
     procedure ClientConnected(Sender: TObject);
+    procedure HostKeyPress(Sender: TObject; var Key: char);
+    procedure PassKeyPress(Sender: TObject; var Key: char);
+    procedure PortKeyPress(Sender: TObject; var Key: char);
     procedure TimerTimer(Sender: TObject);
     procedure ClientDisconnected(Sender: TObject);
     procedure CmdKeyPress(Sender: TObject; var Key: Char);
@@ -252,6 +258,36 @@ begin
   Host.Enabled := False;
   Port.Enabled := False;
   Pass.Enabled := False;
+end;
+
+procedure TForm1.HostKeyPress(Sender: TObject; var Key: char);
+const
+  ENTER = #13;
+begin
+  if Key = ENTER then
+  begin
+    ConnectClick(nil);
+  end;
+end;
+
+procedure TForm1.PassKeyPress(Sender: TObject; var Key: char);
+const
+  ENTER = #13;
+begin
+  if Key = ENTER then
+  begin
+    ConnectClick(nil);
+  end;
+end;
+
+procedure TForm1.PortKeyPress(Sender: TObject; var Key: char);
+const
+  ENTER = #13;
+begin
+  if Key = ENTER then
+  begin
+    ConnectClick(nil);
+  end;
 end;
 
 procedure TForm1.TimerTimer(Sender: TObject);
