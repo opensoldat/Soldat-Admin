@@ -257,10 +257,12 @@ end;
 procedure TForm1.ServerCredentialsEditKeyPress(Sender: TObject; var Key: char);
 const
   ENTER = #13;
+  NONE = #0;
 begin
   if Key = ENTER then
   begin
     ConnectClick(nil);
+    Key := NONE;
   end;
 end;
 
