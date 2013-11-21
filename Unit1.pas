@@ -233,6 +233,9 @@ begin
     Connect.Caption := 'Connect';
     Refresh.Enabled := False;
     Shutdown.Enabled := False;
+    Host.Enabled := True;
+    Port.Enabled := True;
+    Pass.Enabled := True;
   end;
 end;
 
@@ -246,6 +249,9 @@ begin
 
   Refresh.Enabled := True;
   Shutdown.Enabled := True;
+  Host.Enabled := False;
+  Port.Enabled := False;
+  Pass.Enabled := False;
 end;
 
 procedure TForm1.TimerTimer(Sender: TObject);
@@ -315,6 +321,9 @@ begin
       Connect.Caption := 'Connect';
       Refresh.Enabled := False;
       Shutdown.Enabled := False;
+      Host.Enabled := True;
+      Port.Enabled := True;
+      Pass.Enabled := True;
       try
         Client.Disconnect;
       except
