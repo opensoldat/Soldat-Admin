@@ -52,7 +52,6 @@ type
     Pass: TEdit;
     Label2: TLabel;
     Connect: TButton;
-    ExitButton: TButton;
     PlayerList: TListView;
     MapName: TLabel;
     GroupBox3: TGroupBox;
@@ -79,7 +78,6 @@ type
     procedure TimerTimer(Sender: TObject);
     procedure ClientDisconnected(Sender: TObject);
     procedure CmdKeyPress(Sender: TObject; var Key: Char);
-    procedure ExitButtonClick(Sender: TObject);
     procedure RefreshClick(Sender: TObject);
     procedure Kick1Click(Sender: TObject);
     procedure Admin1Click(Sender: TObject);
@@ -398,16 +396,6 @@ begin
     if Cmd.Text = '' then
       Cmd.Text := LastCmd;
   end;
-end;
-
-procedure TForm1.ExitButtonClick(Sender: TObject);
-begin
-  try
-    if Client.Connected then
-      Client.Disconnect;
-  except
-  end;
-  Close;
 end;
 
 procedure TForm1.RefreshClick(Sender: TObject);

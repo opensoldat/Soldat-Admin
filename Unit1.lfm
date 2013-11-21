@@ -274,15 +274,6 @@ object Form1: TForm1
       OnClick = ConnectClick
       TabOrder = 3
     end
-    object ExitButton: TButton
-      Left = 484
-      Height = 27
-      Top = -3
-      Width = 97
-      Caption = 'Exit'
-      OnClick = ExitButtonClick
-      TabOrder = 4
-    end
   end
   object Timer: TTimer
     Interval = 500
