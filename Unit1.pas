@@ -483,6 +483,11 @@ end;
 
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  try
+    if Client.Connected then
+      Client.Disconnect;
+  except
+  end;
   SaveConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);
 end;
 
