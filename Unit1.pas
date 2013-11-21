@@ -72,9 +72,7 @@ type
     Shutdown: TButton;
     procedure ConnectClick(Sender: TObject);
     procedure ClientConnected(Sender: TObject);
-    procedure HostKeyPress(Sender: TObject; var Key: char);
-    procedure PassKeyPress(Sender: TObject; var Key: char);
-    procedure PortKeyPress(Sender: TObject; var Key: char);
+    procedure ServerCredentialsEditKeyPress(Sender: TObject; var Key: char);
     procedure TimerTimer(Sender: TObject);
     procedure ClientDisconnected(Sender: TObject);
     procedure CmdKeyPress(Sender: TObject; var Key: Char);
@@ -258,27 +256,7 @@ begin
   Pass.Enabled := False;
 end;
 
-procedure TForm1.HostKeyPress(Sender: TObject; var Key: char);
-const
-  ENTER = #13;
-begin
-  if Key = ENTER then
-  begin
-    ConnectClick(nil);
-  end;
-end;
-
-procedure TForm1.PassKeyPress(Sender: TObject; var Key: char);
-const
-  ENTER = #13;
-begin
-  if Key = ENTER then
-  begin
-    ConnectClick(nil);
-  end;
-end;
-
-procedure TForm1.PortKeyPress(Sender: TObject; var Key: char);
+procedure TForm1.ServerCredentialsEditKeyPress(Sender: TObject; var Key: char);
 const
   ENTER = #13;
 begin
