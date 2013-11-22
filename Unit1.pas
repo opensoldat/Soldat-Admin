@@ -277,7 +277,18 @@ const
   REFRESH_TIMEOUT = 2000;
 begin
   if not Client.Connected then
+  begin
+  if Refresh.Enabled then
+    begin
+      Connect.Caption := 'Connect';
+      Refresh.Enabled := False;
+      Shutdown.Enabled := False;
+      Host.Enabled := True;
+      Port.Enabled := True;
+      Pass.Enabled := True;
+    end;
     Exit;
+  end;
 
   Msg := Client.IOHandler.ReadLn('', TIMEOUT);
 
