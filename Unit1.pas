@@ -88,6 +88,8 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DoCurrentPlayerAction(Name: string);
     procedure ServerCredentialsEditChange(Sender: TObject);
+    procedure ServerConnected;
+    procedure ServerDisconnected;
   private
     { Private declarations }
   public
@@ -230,12 +232,7 @@ begin
       Client.Disconnect;
     except
     end;
-    Connect.Caption := 'Connect';
-    Refresh.Enabled := False;
-    Shutdown.Enabled := False;
-    Host.Enabled := True;
-    Port.Enabled := True;
-    Pass.Enabled := True;
+    ServerDisconnected;
   end;
 end;
 
@@ -245,13 +242,7 @@ begin
     Client.IOHandler.WriteLn(Pass.Text);
   except
   end;
-  Connect.Caption := 'Disconnect';
-
-  Refresh.Enabled := True;
-  Shutdown.Enabled := True;
-  Host.Enabled := False;
-  Port.Enabled := False;
-  Pass.Enabled := False;
+  ServerConnected;
 end;
 
 procedure TForm1.ServerCredentialsEditKeyPress(Sender: TObject; var Key: char);
@@ -266,6 +257,26 @@ begin
   end;
 end;
 
+procedure TForm1.ServerConnected;
+begin
+  Connect.Caption := 'Disconnect';
+  Refresh.Enabled := True;
+  Shutdown.Enabled := True;
+  Host.Enabled := False;
+  Port.Enabled := False;
+  Pass.Enabled := False;
+end;
+
+procedure TForm1.ServerDisconnected;
+begin
+  Connect.Caption := 'Connect';
+  Refresh.Enabled := False;
+  Shutdown.Enabled := False;
+  Host.Enabled := True;
+  Port.Enabled := True;
+  Pass.Enabled := True;
+end;
+
 procedure TForm1.TimerTimer(Sender: TObject);
 var
   Msg: string;
@@ -278,15 +289,8 @@ const
 begin
   if not Client.Connected then
   begin
-  if Refresh.Enabled then
-    begin
-      Connect.Caption := 'Connect';
-      Refresh.Enabled := False;
-      Shutdown.Enabled := False;
-      Host.Enabled := True;
-      Port.Enabled := True;
-      Pass.Enabled := True;
-    end;
+    if Refresh.Enabled then
+      ServerDisconnected;
     Exit;
   end;
 
@@ -341,12 +345,7 @@ begin
     if (Msg = 'Invalid server password. Cannot login.') or
       (Msg = 'Invalid password.') then
     begin
-      Connect.Caption := 'Connect';
-      Refresh.Enabled := False;
-      Shutdown.Enabled := False;
-      Host.Enabled := True;
-      Port.Enabled := True;
-      Pass.Enabled := True;
+      ServerDisconnected;
       try
         Client.Disconnect;
       except
