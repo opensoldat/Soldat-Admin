@@ -3,7 +3,7 @@
 {       Main Unit for Soldat Admin                           }
 {                                                            }
 {       Copyright (c) 2003-2004 Michal Marcinkowski          }
-{       Copyright (c) 2012 Gregor A. Cieslak                 }
+{       Copyright (c) 2012-2013 Gregor A. Cieslak            }
 {                                                            }
 {       free to distribute and modify                        }
 {************************************************************}
@@ -37,7 +37,6 @@ const
 type
 
   { TForm1 }
-
   TForm1 = class(TForm)
     Memo: TMemo;
     Timer: TTimer;
