@@ -171,11 +171,17 @@ end;
 procedure TForm1.ConnectClick(Sender: TObject);
 var
   PortAsNumber: Integer;
-  InvalidInput: Boolean;
+  InvalidInput, IsConnected: Boolean;
 const
   COLOR_ERROR = TColor($7F7FFF);
 begin
-  if not Client.Connected then
+  try
+    IsConnected := Client.Connected;
+  except
+    IsConneted := False;
+  end;
+
+  if not IsConnected then
   begin
     Connect.Caption := 'Connecting...';
 
@@ -282,11 +288,18 @@ var
   ListItem: TListItem;
   I: Integer;
   Buffer: TIdBytes;
+  IsConnected: Boolean;
 const
   TIMEOUT = 5;
   REFRESH_TIMEOUT = 2000;
 begin
-  if not Client.Connected then
+  try
+    IsConnected := Client.Connected;
+  except
+    IsConnected := False;
+  end;
+
+  if not IsConnected then
   begin
     if Refresh.Enabled then
       ServerDisconnected;
