@@ -178,7 +178,7 @@ begin
   try
     IsConnected := Client.Connected;
   except
-    IsConneted := False;
+    IsConnected := False;
   end;
 
   if not IsConnected then
