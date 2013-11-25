@@ -179,6 +179,10 @@ begin
     IsConnected := Client.Connected;
   except
     IsConnected := False;
+    try
+      Client.Disconnect;
+    except
+    end;
   end;
 
   if not IsConnected then
@@ -297,6 +301,10 @@ begin
     IsConnected := Client.Connected;
   except
     IsConnected := False;
+    try
+      Client.Disconnect;
+    except
+    end;
   end;
 
   if not IsConnected then
