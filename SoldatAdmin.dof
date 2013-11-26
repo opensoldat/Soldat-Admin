@@ -90,8 +90,8 @@ MaxStackSize=1048576
 ImageBase=4194304
 ExeDescription=Soldat Admin
 [Directories]
-OutputDir=
-UnitOutputDir=
+OutputDir=./bin
+UnitOutputDir=./bin/obj
 PackageDLLOutputDir=
 PackageDCPOutputDir=
 SearchPath=
