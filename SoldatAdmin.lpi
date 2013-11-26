@@ -37,9 +37,13 @@
         <CompilerOptions>
           <Version Value="11"/>
           <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="./bin/SoldatAdmin"/>
+          </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir);$(indy10)\Lib\Protocols"/>
             <OtherUnitFiles Value="$(indy10)\Lib\Protocols;$(indy10)\Lib\Core;$(indy10)\Lib\Security;$(indy10)\Lib\SuperCore;$(indy10)\Lib\System"/>
+            <UnitOutputDirectory Value="./bin/obj/$(TargetOS)-$(TargetCPU)-debug"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -72,9 +76,13 @@
         <CompilerOptions>
           <Version Value="11"/>
           <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="./bin/SoldatAdmin"/>
+          </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir);$(indy10)\Lib\Protocols"/>
             <OtherUnitFiles Value="$(indy10)\Lib\Protocols;$(indy10)\Lib\Core;$(indy10)\Lib\Security;$(indy10)\Lib\SuperCore;$(indy10)\Lib\System"/>
+            <UnitOutputDirectory Value="./bin/obj/$(TargetOS)-$(TargetCPU)-release"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -113,9 +121,13 @@
         <CompilerOptions>
           <Version Value="11"/>
           <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="./bin/SoldatAdmin"/>
+          </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir);$(indy10)\Lib\Protocols"/>
             <OtherUnitFiles Value="$(indy10)\Lib\Protocols;$(indy10)\Lib\Core;$(indy10)\Lib\Security;$(indy10)\Lib\SuperCore;$(indy10)\Lib\System"/>
+            <UnitOutputDirectory Value="./bin/obj/$(TargetOS)-$(TargetCPU)-debug"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -141,9 +153,13 @@
         <CompilerOptions>
           <Version Value="11"/>
           <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="./bin/SoldatAdmin"/>
+          </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir);$(indy10)\Lib\Protocols"/>
             <OtherUnitFiles Value="$(indy10)\Lib\Protocols;$(indy10)\Lib\Core;$(indy10)\Lib\Security;$(indy10)\Lib\SuperCore;$(indy10)\Lib\System"/>
+            <UnitOutputDirectory Value="./bin/obj/$(TargetOS)-$(TargetCPU)-release"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -182,9 +198,13 @@
         <CompilerOptions>
           <Version Value="11"/>
           <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="./bin/SoldatAdmin"/>
+          </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir);$(indy10)\Lib\Protocols"/>
             <OtherUnitFiles Value="$(indy10)\Lib\Protocols;$(indy10)\Lib\Core;$(indy10)\Lib\Security;$(indy10)\Lib\SuperCore;$(indy10)\Lib\System"/>
+            <UnitOutputDirectory Value="./bin/obj/$(TargetOS)-$(TargetCPU)-debug"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -238,9 +258,13 @@
   <CompilerOptions>
     <Version Value="11"/>
     <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="./bin/SoldatAdmin"/>
+    </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir);$(indy10)\Lib\Protocols"/>
       <OtherUnitFiles Value="$(indy10)\Lib\Protocols;$(indy10)\Lib\Core;$(indy10)\Lib\Security;$(indy10)\Lib\SuperCore;$(indy10)\Lib\System"/>
+      <UnitOutputDirectory Value="./bin/obj/$(TargetOS)-$(TargetCPU)-release"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
