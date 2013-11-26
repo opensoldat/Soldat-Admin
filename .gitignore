@@ -12,3 +12,4 @@
 *.lps
 *.compiled
 *.ini
+bin/*
