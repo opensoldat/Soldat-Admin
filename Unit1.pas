@@ -87,8 +87,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DoCurrentPlayerAction(Name: string);
     procedure ServerCredentialsEditChange(Sender: TObject);
-    procedure ServerConnected;
-    procedure ServerDisconnected;
+    procedure ServerConnectionStateChanged(NewState: Boolean);
   private
     { Private declarations }
   public
@@ -241,7 +240,7 @@ begin
       Client.Disconnect;
     except
     end;
-    ServerDisconnected;
+    ServerConnectionStateChanged(True);
   end;
 end;
 
@@ -251,7 +250,7 @@ begin
     Client.IOHandler.WriteLn(Pass.Text);
   except
   end;
-  ServerConnected;
+  ServerConnectionStateChanged(False);
 end;
 
 procedure TForm1.ServerCredentialsEditKeyPress(Sender: TObject; var Key: char);
@@ -266,24 +265,14 @@ begin
   end;
 end;
 
-procedure TForm1.ServerConnected;
+procedure TForm1.ServerConnectionStateChanged(NewState: Boolean);
 begin
-  Connect.Caption := 'Disconnect';
-  Refresh.Enabled := True;
-  Shutdown.Enabled := True;
-  Host.Enabled := False;
-  Port.Enabled := False;
-  Pass.Enabled := False;
-end;
-
-procedure TForm1.ServerDisconnected;
-begin
-  Connect.Caption := 'Connect';
-  Refresh.Enabled := False;
-  Shutdown.Enabled := False;
-  Host.Enabled := True;
-  Port.Enabled := True;
-  Pass.Enabled := True;
+  Connect.Caption := iif(NewState, 'Disconnect', 'Connect');
+  Refresh.Enabled := not NewState;
+  Shutdown.Enabled := not NewState;
+  Host.Enabled := NewState;
+  Port.Enabled := NewState;
+  Pass.Enabled := NewState;
 end;
 
 procedure TForm1.TimerTimer(Sender: TObject);
@@ -310,7 +299,7 @@ begin
   if not IsConnected then
   begin
     if Refresh.Enabled then
-      ServerDisconnected;
+      ServerConnectionStateChanged(True);
     Exit;
   end;
 
@@ -365,7 +354,7 @@ begin
     if (Msg = 'Invalid server password. Cannot login.') or
       (Msg = 'Invalid password.') then
     begin
-      ServerDisconnected;
+      ServerConnectionStateChanged(True);
       try
         Client.Disconnect;
       except
