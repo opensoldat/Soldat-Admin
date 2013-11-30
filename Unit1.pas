@@ -69,6 +69,7 @@ type
     GameMode: TLabel;
     RefreshTimer: TTimer;
     Shutdown: TButton;
+    procedure CmdKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure ConnectClick(Sender: TObject);
     procedure ClientConnected(Sender: TObject);
     procedure ServerCredentialsEditKeyPress(Sender: TObject; var Key: char);
@@ -244,6 +245,14 @@ begin
   end;
 end;
 
+procedure TForm1.CmdKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if Key = VK_UP then
+  begin
+    Cmd.Text := LastCmd;
+  end;
+end;
+
 procedure TForm1.ClientConnected(Sender: TObject);
 begin
   try
@@ -387,11 +396,6 @@ begin
     except
     end;
     Key := NONE;  // disable beep sound
-  end
-  else if Key = BACKSPACE then
-  begin
-    if Cmd.Text = '' then
-      Cmd.Text := LastCmd;
   end;
 end;
 
