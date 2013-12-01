@@ -246,10 +246,15 @@ begin
 end;
 
 procedure TForm1.CmdKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+const
+  NONE = 0;
 begin
   if Key = VK_UP then
   begin
+    Key := NONE;  // disable default UP key action
     Cmd.Text := LastCmd;
+    Cmd.SelStart := Length(Cmd.Text);
+    Cmd.SelLength := 0;
   end;
 end;
 
