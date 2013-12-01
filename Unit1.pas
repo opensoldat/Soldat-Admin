@@ -386,7 +386,6 @@ end;
 procedure TForm1.CmdKeyPress(Sender: TObject; var Key: Char);
 const
   ENTER = #13;
-  BACKSPACE = #8;
   NONE = #0;
 begin
   if Key = ENTER then
