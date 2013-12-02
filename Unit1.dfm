@@ -150,6 +150,7 @@ object Form1: TForm1
     Width = 345
     Height = 21
     TabOrder = 1
+    OnKeyDown = CmdKeyDown
     OnKeyPress = CmdKeyPress
   end
   object GroupBox1: TGroupBox
