@@ -287,6 +287,7 @@ begin
   Host.Enabled := NewState;
   Port.Enabled := NewState;
   Pass.Enabled := NewState;
+  Cmd.Enabled := not NewState;
 end;
 
 procedure TForm1.TimerTimer(Sender: TObject);

@@ -149,6 +149,7 @@ object Form1: TForm1
     Top = 402
     Width = 345
     Height = 21
+    Enabled = False
     TabOrder = 1
     OnKeyDown = CmdKeyDown
     OnKeyPress = CmdKeyPress
