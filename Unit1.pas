@@ -281,7 +281,7 @@ end;
 
 procedure TForm1.ServerConnectionStateChanged(NewState: Boolean);
 begin
-  Connect.Caption := iif(NewState, 'Disconnect', 'Connect');
+  Connect.Caption := iif(NewState, 'Connect', 'Disconnect');
   Refresh.Enabled := not NewState;
   Shutdown.Enabled := not NewState;
   Host.Enabled := NewState;
