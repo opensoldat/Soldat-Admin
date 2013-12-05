@@ -126,11 +126,11 @@ object Form1: TForm1
           MinWidth = 50
         end>
       GridLines = True
-      PopupMenu = PlayerPopup
       ReadOnly = True
       RowSelect = True
       TabOrder = 0
       ViewStyle = vsReport
+      OnMouseDown = PlayerListMouseDown
     end
     object GroupBox3: TGroupBox
       Left = 4
@@ -284,6 +284,7 @@ object Form1: TForm1
     top = 60
   end
   object PlayerPopup: TPopupMenu
+    AutoPopup = False
     left = 544
     top = 280
     object Kick1: TMenuItem

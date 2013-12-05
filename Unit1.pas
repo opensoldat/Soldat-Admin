@@ -89,6 +89,8 @@ type
     procedure DoCurrentPlayerAction(Name: string);
     procedure ServerCredentialsEditChange(Sender: TObject);
     procedure ServerConnectionStateChanged(NewState: Boolean);
+    procedure PlayerListMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     { Private declarations }
   public
@@ -489,6 +491,25 @@ procedure TForm1.ServerCredentialsEditChange(Sender: TObject);
 begin
   if Sender is TEdit then
     TEdit(Sender).Color := COLOR_OK;
+end;
+
+procedure TForm1.PlayerListMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var
+  clickPos: TPoint;
+  I: Integer;
+begin
+  if Button = mbRight then
+  begin
+    if PlayerList.Items.Count = 0 then
+      Exit;
+    I := PlayerList.ItemIndex;
+    if (I < 0) or (I > (PlayerList.Items.Count - 1)) then
+      Exit;
+
+    GetCursorPos(clickPos);
+    PlayerPopup.Popup(clickPos.X, clickPos.Y);
+  end;
 end;
 
 end.
