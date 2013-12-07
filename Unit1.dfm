@@ -244,28 +244,28 @@ object Form1: TForm1
         Top = 16
         Width = 29
         Height = 13
-        Caption = 'team1'
+        Caption = 'Alpha:'
       end
       object team2: TLabel
         Left = 8
         Top = 32
         Width = 29
         Height = 13
-        Caption = 'team2'
+        Caption = 'Bravo:'
       end
       object team3: TLabel
         Left = 8
         Top = 48
         Width = 29
         Height = 13
-        Caption = 'team3'
+        Caption = 'Charlie:'
       end
       object team4: TLabel
         Left = 8
         Top = 64
         Width = 29
         Height = 13
-        Caption = 'team4'
+        Caption = 'Delta:'
       end
     end
     object Refresh: TButton

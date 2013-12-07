@@ -146,7 +146,7 @@ object Form1: TForm1
         Height = 14
         Top = 1
         Width = 30
-        Caption = 'team1'
+        Caption = 'Alpha:'
         ParentColor = False
       end
       object team2: TLabel
@@ -154,7 +154,7 @@ object Form1: TForm1
         Height = 14
         Top = 17
         Width = 30
-        Caption = 'team2'
+        Caption = 'Bravo:'
         ParentColor = False
       end
       object team3: TLabel
@@ -162,7 +162,7 @@ object Form1: TForm1
         Height = 14
         Top = 33
         Width = 30
-        Caption = 'team3'
+        Caption = 'Charlie:'
         ParentColor = False
       end
       object team4: TLabel
@@ -170,7 +170,7 @@ object Form1: TForm1
         Height = 14
         Top = 49
         Width = 30
-        Caption = 'team4'
+        Caption = 'Delta:'
         ParentColor = False
       end
     end
