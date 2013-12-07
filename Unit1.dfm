@@ -1,12 +1,12 @@
 object Form1: TForm1
   Left = 314
-  Top = 131
-  BorderIcons = [biSystemMenu, biMinimize]
-  BorderStyle = bsSingle
+  Top = 140
+  Width = 598
+  Height = 452
   Caption = 'Soldat Admin 1.2'
-  ClientHeight = 425
-  ClientWidth = 590
   Color = clBtnFace
+  Constraints.MinHeight = 452
+  Constraints.MinWidth = 598
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -119,6 +119,9 @@ object Form1: TForm1
   Position = poScreenCenter
   OnClose = FormClose
   OnCreate = FormCreate
+  DesignSize = (
+    590
+    425)
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -126,6 +129,7 @@ object Form1: TForm1
     Top = 388
     Width = 83
     Height = 13
+    Anchors = [akLeft, akBottom]
     Caption = 'Server command:'
   end
   object Memo: TMemo
@@ -133,6 +137,7 @@ object Form1: TForm1
     Top = 45
     Width = 345
     Height = 344
+    Anchors = [akLeft, akTop, akBottom]
     Color = clBlack
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clLime
@@ -149,6 +154,7 @@ object Form1: TForm1
     Top = 402
     Width = 345
     Height = 21
+    Anchors = [akLeft, akBottom]
     Enabled = False
     TabOrder = 1
     OnKeyDown = CmdKeyDown
@@ -159,13 +165,18 @@ object Form1: TForm1
     Top = 44
     Width = 237
     Height = 380
+    Anchors = [akLeft, akTop, akRight, akBottom]
     Caption = 'Game:'
     TabOrder = 2
+    DesignSize = (
+      237
+      380)
     object MapName: TLabel
       Left = 102
       Top = 300
       Width = 24
       Height = 13
+      Anchors = [akLeft, akBottom]
       Caption = 'Map:'
     end
     object Time: TLabel
@@ -173,6 +184,7 @@ object Form1: TForm1
       Top = 316
       Width = 23
       Height = 13
+      Anchors = [akLeft, akBottom]
       Caption = 'Time'
     end
     object Limit: TLabel
@@ -180,6 +192,7 @@ object Form1: TForm1
       Top = 332
       Width = 55
       Height = 13
+      Anchors = [akLeft, akBottom]
       Caption = 'Score Limit:'
     end
     object GameMode: TLabel
@@ -187,6 +200,7 @@ object Form1: TForm1
       Top = 348
       Width = 61
       Height = 13
+      Anchors = [akLeft, akBottom]
       Caption = 'Game Mode:'
     end
     object PlayerList: TListView
@@ -194,6 +208,7 @@ object Form1: TForm1
       Top = 58
       Width = 225
       Height = 233
+      Anchors = [akLeft, akTop, akRight, akBottom]
       Columns = <
         item
           Caption = 'Player Name'
@@ -237,33 +252,34 @@ object Form1: TForm1
       Top = 294
       Width = 89
       Height = 81
+      Anchors = [akLeft, akBottom]
       Caption = 'Team scores:'
       TabOrder = 1
       object team1: TLabel
         Left = 8
         Top = 16
-        Width = 29
+        Width = 30
         Height = 13
         Caption = 'Alpha:'
       end
       object team2: TLabel
         Left = 8
         Top = 32
-        Width = 29
+        Width = 31
         Height = 13
         Caption = 'Bravo:'
       end
       object team3: TLabel
         Left = 8
         Top = 48
-        Width = 29
+        Width = 35
         Height = 13
         Caption = 'Charlie:'
       end
       object team4: TLabel
         Left = 8
         Top = 64
-        Width = 29
+        Width = 28
         Height = 13
         Caption = 'Delta:'
       end
@@ -302,6 +318,7 @@ object Form1: TForm1
     Top = 0
     Width = 589
     Height = 44
+    Anchors = [akLeft, akTop, akRight]
     Caption = 'Remote Server:'
     TabOrder = 3
     object Label3: TLabel

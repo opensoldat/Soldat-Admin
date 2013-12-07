@@ -3,12 +3,12 @@ object Form1: TForm1
   Height = 425
   Top = 131
   Width = 590
-  BorderIcons = [biSystemMenu, biMinimize]
-  BorderStyle = bsSingle
   Caption = 'Soldat Admin 1.2'
   ClientHeight = 425
   ClientWidth = 590
   Color = clBtnFace
+  Constraints.MinHeight = 425
+  Constraints.MinWidth = 590
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
@@ -21,6 +21,7 @@ object Form1: TForm1
     Height = 14
     Top = 388
     Width = 84
+    Anchors = [akLeft, akBottom]
     Caption = 'Server command:'
     ParentColor = False
   end
@@ -29,6 +30,7 @@ object Form1: TForm1
     Height = 344
     Top = 45
     Width = 345
+    Anchors = [akTop, akLeft, akBottom]
     Color = clBlack
     Font.Color = clLime
     Font.Height = -11
@@ -43,6 +45,7 @@ object Form1: TForm1
     Height = 21
     Top = 402
     Width = 345
+    Anchors = [akLeft, akBottom]
     Enabled = False
     OnKeyDown = CmdKeyDown
     OnKeyPress = CmdKeyPress
@@ -53,6 +56,7 @@ object Form1: TForm1
     Height = 381
     Top = 43
     Width = 237
+    Anchors = [akTop, akLeft, akRight, akBottom]
     Caption = 'Game:'
     ClientHeight = 363
     ClientWidth = 233
@@ -62,6 +66,7 @@ object Form1: TForm1
       Height = 14
       Top = 285
       Width = 25
+      Anchors = [akLeft, akBottom]
       Caption = 'Map:'
       ParentColor = False
     end
@@ -70,6 +75,7 @@ object Form1: TForm1
       Height = 14
       Top = 301
       Width = 24
+      Anchors = [akLeft, akBottom]
       Caption = 'Time'
       ParentColor = False
     end
@@ -78,6 +84,7 @@ object Form1: TForm1
       Height = 14
       Top = 317
       Width = 56
+      Anchors = [akLeft, akBottom]
       Caption = 'Score Limit:'
       ParentColor = False
     end
@@ -86,6 +93,7 @@ object Form1: TForm1
       Height = 14
       Top = 333
       Width = 62
+      Anchors = [akLeft, akBottom]
       Caption = 'Game Mode:'
       ParentColor = False
     end
@@ -94,6 +102,7 @@ object Form1: TForm1
       Height = 233
       Top = 43
       Width = 225
+      Anchors = [akTop, akLeft, akRight, akBottom]
       Columns = <      
         item
           Caption = 'Player Name'
@@ -137,6 +146,7 @@ object Form1: TForm1
       Height = 82
       Top = 278
       Width = 89
+      Anchors = [akLeft, akBottom]
       Caption = 'Team scores:'
       ClientHeight = 64
       ClientWidth = 85
@@ -145,7 +155,7 @@ object Form1: TForm1
         Left = 6
         Height = 14
         Top = 1
-        Width = 30
+        Width = 31
         Caption = 'Alpha:'
         ParentColor = False
       end
@@ -153,7 +163,7 @@ object Form1: TForm1
         Left = 6
         Height = 14
         Top = 17
-        Width = 30
+        Width = 32
         Caption = 'Bravo:'
         ParentColor = False
       end
@@ -161,7 +171,7 @@ object Form1: TForm1
         Left = 6
         Height = 14
         Top = 33
-        Width = 30
+        Width = 36
         Caption = 'Charlie:'
         ParentColor = False
       end
@@ -169,7 +179,7 @@ object Form1: TForm1
         Left = 6
         Height = 14
         Top = 49
-        Width = 30
+        Width = 29
         Caption = 'Delta:'
         ParentColor = False
       end
@@ -208,6 +218,7 @@ object Form1: TForm1
     Height = 45
     Top = -1
     Width = 589
+    Anchors = [akTop, akLeft, akRight]
     Caption = 'Remote Server:'
     ClientHeight = 27
     ClientWidth = 585
