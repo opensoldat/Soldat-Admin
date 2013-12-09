@@ -145,6 +145,15 @@ begin
   Ini.WriteString('ADMIN', 'Port', Port.Text);
   Ini.WriteString('ADMIN', 'Refresh', iif(Auto.Checked, '1', '0'));
 
+  Ini.WriteString('WINDOW', 'Maximized', iif(Form1.WindowState = wsMaximized, '1', '0'));
+  if Form1.WindowState <> wsMaximized then
+  begin
+    Ini.WriteString('WINDOW', 'X', IntToStr(Form1.Left));
+    Ini.WriteString('WINDOW', 'Y', IntToStr(Form1.Top));
+    Ini.WriteString('WINDOW', 'Width', IntToStr(Form1.Width));
+    Ini.WriteString('WINDOW', 'Height', IntToStr(Form1.Height));
+  end;
+
   Ini.Free;
 end;
 
@@ -165,6 +174,24 @@ begin
   Host.Text := Conf.Values['IP'];
   Port.Text := Conf.Values['Port'];
   Auto.Checked := Conf.Values['Refresh'] = '1';
+  Conf.Clear;
+
+  Ini.ReadSectionValues('WINDOW', Conf);
+  if Conf.Values['Maximized'] = '1' then
+  begin
+    Form1.WindowState := wsMaximized;
+  end else
+  begin
+    try
+      Form1.Left := StrToInt(Conf.Values['X']);
+      Form1.Top := StrToInt(Conf.Values['Y']);
+      Form1.Position := poDesigned;
+    except
+    end;
+
+    Form1.Width := StrToIntDef(Conf.Values['Width'], Form1.Constraints.MinWidth);
+    Form1.Height := StrToIntDef(Conf.Values['Height'], Form1.Constraints.MinHeight);
+  end;
 
   Ini.Free;
   Conf.Free;
