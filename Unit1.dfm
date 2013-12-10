@@ -119,6 +119,7 @@ object Form1: TForm1
   Position = poScreenCenter
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   DesignSize = (
     590
     425)

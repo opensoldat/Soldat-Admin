@@ -72,6 +72,7 @@ type
     procedure CmdKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure ConnectClick(Sender: TObject);
     procedure ClientConnected(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure ServerCredentialsEditKeyPress(Sender: TObject; var Key: char);
     procedure TimerTimer(Sender: TObject);
     procedure ClientDisconnected(Sender: TObject);
@@ -296,6 +297,11 @@ begin
   ServerConnectionStateChanged(False);
 end;
 
+procedure TForm1.FormShow(Sender: TObject);
+begin
+  {$IFDEF FPC}LoadConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);{$ENDIF}
+end;
+
 procedure TForm1.ServerCredentialsEditKeyPress(Sender: TObject; var Key: char);
 const
   ENTER = #13;
@@ -501,7 +507,7 @@ begin
   Client.Port := DEFAULT_PORT;
   Client.ReadTimeout := -1;
 
-  LoadConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);
+  {$IFNDEF FPC}LoadConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);{$ENDIF}
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
