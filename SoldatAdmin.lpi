@@ -21,8 +21,8 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="1"/>
-      <MinorVersionNr Value="2"/>
-      <StringTable FileDescription="Soldat Admin" OriginalFilename="SoldatAdmin.exe" ProductName="Soldat Admin"/>
+      <MinorVersionNr Value="3"/>
+      <StringTable FileDescription="Soldat Admin" OriginalFilename="SoldatAdmin.exe" ProductName="Soldat Admin" ProductVersion=""/>
     </VersionInfo>
     <MacroValues Count="1">
       <Macro1 Name="indy10" Value="$Env(INDY10)"/>

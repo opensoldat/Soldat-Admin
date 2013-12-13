@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 140
   Width = 598
   Height = 452
-  Caption = 'Soldat Admin 1.2'
+  Caption = 'Soldat Admin 1.3'
   Color = clBtnFace
   Constraints.MinHeight = 452
   Constraints.MinWidth = 598
