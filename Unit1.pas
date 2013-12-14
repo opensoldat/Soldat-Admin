@@ -36,8 +36,8 @@ const
 
 type
 
-  { TForm1 }
-  TForm1 = class(TForm)
+  { TMainForm }
+  TMainForm = class(TForm)
     Memo: TMemo;
     Timer: TTimer;
     Cmd: TEdit;
@@ -116,7 +116,7 @@ type
 
 
 var
-  Form1: TForm1;
+  MainForm: TMainForm;
   RefreshMsg: TMsg_Refresh;
   LastCmd: string = '';
   Client: TIdTCPClient;
@@ -137,7 +137,7 @@ begin
     Result := FalseCase;
 end;
 
-procedure TForm1.SaveConfig(Filename: string);
+procedure TMainForm.SaveConfig(Filename: string);
 var
   Ini: TIniFile;
 begin
@@ -146,19 +146,19 @@ begin
   Ini.WriteString('ADMIN', 'Port', Port.Text);
   Ini.WriteString('ADMIN', 'Refresh', iif(Auto.Checked, '1', '0'));
 
-  Ini.WriteString('WINDOW', 'Maximized', iif(Form1.WindowState = wsMaximized, '1', '0'));
-  if Form1.WindowState <> wsMaximized then
+  Ini.WriteString('WINDOW', 'Maximized', iif(MainForm.WindowState = wsMaximized, '1', '0'));
+  if MainForm.WindowState <> wsMaximized then
   begin
-    Ini.WriteString('WINDOW', 'X', IntToStr(Form1.Left));
-    Ini.WriteString('WINDOW', 'Y', IntToStr(Form1.Top));
-    Ini.WriteString('WINDOW', 'Width', IntToStr(Form1.Width));
-    Ini.WriteString('WINDOW', 'Height', IntToStr(Form1.Height));
+    Ini.WriteString('WINDOW', 'X', IntToStr(MainForm.Left));
+    Ini.WriteString('WINDOW', 'Y', IntToStr(MainForm.Top));
+    Ini.WriteString('WINDOW', 'Width', IntToStr(MainForm.Width));
+    Ini.WriteString('WINDOW', 'Height', IntToStr(MainForm.Height));
   end;
 
   Ini.Free;
 end;
 
-procedure TForm1.LoadConfig(Filename: string);
+procedure TMainForm.LoadConfig(Filename: string);
 var
   Ini: TMemIniFile;
   Conf: TStringList;
@@ -180,25 +180,25 @@ begin
   Ini.ReadSectionValues('WINDOW', Conf);
   if Conf.Values['Maximized'] = '1' then
   begin
-    Form1.WindowState := wsMaximized;
+    MainForm.WindowState := wsMaximized;
   end else
   begin
     try
-      Form1.Left := StrToInt(Conf.Values['X']);
-      Form1.Top := StrToInt(Conf.Values['Y']);
-      Form1.Position := poDesigned;
+      MainForm.Left := StrToInt(Conf.Values['X']);
+      MainForm.Top := StrToInt(Conf.Values['Y']);
+      MainForm.Position := poDesigned;
     except
     end;
 
-    Form1.Width := StrToIntDef(Conf.Values['Width'], Form1.Constraints.MinWidth);
-    Form1.Height := StrToIntDef(Conf.Values['Height'], Form1.Constraints.MinHeight);
+    MainForm.Width := StrToIntDef(Conf.Values['Width'], MainForm.Constraints.MinWidth);
+    MainForm.Height := StrToIntDef(Conf.Values['Height'], MainForm.Constraints.MinHeight);
   end;
 
   Ini.Free;
   Conf.Free;
 end;
 
-procedure TForm1.ConnectClick(Sender: TObject);
+procedure TMainForm.ConnectClick(Sender: TObject);
 var
   PortAsNumber: Integer;
   InvalidInput, IsConnected: Boolean;
@@ -275,7 +275,7 @@ begin
   end;
 end;
 
-procedure TForm1.CmdKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+procedure TMainForm.CmdKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 const
   NONE = 0;
 begin
@@ -288,7 +288,7 @@ begin
   end;
 end;
 
-procedure TForm1.ClientConnected(Sender: TObject);
+procedure TMainForm.ClientConnected(Sender: TObject);
 begin
   try
     Client.IOHandler.WriteLn(Pass.Text);
@@ -297,12 +297,12 @@ begin
   ServerConnectionStateChanged(False);
 end;
 
-procedure TForm1.FormShow(Sender: TObject);
+procedure TMainForm.FormShow(Sender: TObject);
 begin
   {$IFDEF FPC}LoadConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);{$ENDIF}
 end;
 
-procedure TForm1.ServerCredentialsEditKeyPress(Sender: TObject; var Key: char);
+procedure TMainForm.ServerCredentialsEditKeyPress(Sender: TObject; var Key: char);
 const
   ENTER = #13;
   NONE = #0;
@@ -314,7 +314,7 @@ begin
   end;
 end;
 
-procedure TForm1.ServerConnectionStateChanged(NewState: Boolean);
+procedure TMainForm.ServerConnectionStateChanged(NewState: Boolean);
 begin
   Connect.Caption := iif(NewState, 'Connect', 'Disconnect');
   Refresh.Enabled := not NewState;
@@ -325,7 +325,7 @@ begin
   Cmd.Enabled := not NewState;
 end;
 
-procedure TForm1.TimerTimer(Sender: TObject);
+procedure TMainForm.TimerTimer(Sender: TObject);
 var
   Msg: string;
   ListItem: TListItem;
@@ -414,12 +414,12 @@ begin
   end;
 end;
 
-procedure TForm1.ClientDisconnected(Sender: TObject);
+procedure TMainForm.ClientDisconnected(Sender: TObject);
 begin
   Memo.Lines.Add('Admin disconnected');
 end;
 
-procedure TForm1.CmdKeyPress(Sender: TObject; var Key: Char);
+procedure TMainForm.CmdKeyPress(Sender: TObject; var Key: Char);
 const
   ENTER = #13;
   NONE = #0;
@@ -439,7 +439,7 @@ begin
   end;
 end;
 
-procedure TForm1.RefreshClick(Sender: TObject);
+procedure TMainForm.RefreshClick(Sender: TObject);
 begin
   try
     if Client.Connected then
@@ -448,7 +448,7 @@ begin
   end;
 end;
 
-procedure TForm1.DoCurrentPlayerAction(Name: string);
+procedure TMainForm.DoCurrentPlayerAction(Name: string);
 var
   I: Integer;
   S: string;
@@ -469,28 +469,28 @@ begin
   CmdKeyPress(nil, Ch);
 end;
 
-procedure TForm1.Kick1Click(Sender: TObject);
+procedure TMainForm.Kick1Click(Sender: TObject);
 begin
   DoCurrentPlayerAction('/kick');
 end;
 
-procedure TForm1.Admin1Click(Sender: TObject);
+procedure TMainForm.Admin1Click(Sender: TObject);
 begin
   DoCurrentPlayerAction('/adm');
 end;
 
-procedure TForm1.Ban1Click(Sender: TObject);
+procedure TMainForm.Ban1Click(Sender: TObject);
 begin
   DoCurrentPlayerAction('/ban');
 end;
 
-procedure TForm1.RefreshTimerTimer(Sender: TObject);
+procedure TMainForm.RefreshTimerTimer(Sender: TObject);
 begin
-  if (Auto.Checked) and (Form1.WindowState <> wsMinimized) then
+  if (Auto.Checked) and (MainForm.WindowState <> wsMinimized) then
     RefreshClick(nil);
 end;
 
-procedure TForm1.ShutdownClick(Sender: TObject);
+procedure TMainForm.ShutdownClick(Sender: TObject);
 begin
   try
     Client.IOHandler.WriteLn('SHUTDOWN');
@@ -498,7 +498,7 @@ begin
   end;
 end;
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TMainForm.FormCreate(Sender: TObject);
 begin
   // dynamically created to avoid design time packages
   Client := TIdTCPClient.Create(nil);
@@ -510,7 +510,7 @@ begin
   {$IFNDEF FPC}LoadConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);{$ENDIF}
 end;
 
-procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   try
     if Client.Connected then
@@ -520,13 +520,13 @@ begin
   SaveConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);
 end;
 
-procedure TForm1.ServerCredentialsEditChange(Sender: TObject);
+procedure TMainForm.ServerCredentialsEditChange(Sender: TObject);
 begin
   if Sender is TEdit then
     TEdit(Sender).Color := COLOR_OK;
 end;
 
-procedure TForm1.PlayerListMouseDown(Sender: TObject; Button: TMouseButton;
+procedure TMainForm.PlayerListMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var
   clickPos: TPoint;

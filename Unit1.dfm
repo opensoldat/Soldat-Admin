@@ -1,4 +1,4 @@
-object Form1: TForm1
+object MainForm: TForm1
   Left = 314
   Top = 140
   Width = 598

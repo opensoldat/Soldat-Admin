@@ -14,13 +14,13 @@ program SoldatAdmin;
 uses
   {$IFDEF FPC}Interfaces,{$ENDIF}
   Forms,
-  Unit1 in 'Unit1.pas' {Form1};
+  Unit1 in 'Unit1.pas' {MainForm};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.Title := 'Soldat Admin';
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TMainForm, MainForm);
   Application.Run;
 end.
