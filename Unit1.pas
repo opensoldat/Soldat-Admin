@@ -291,7 +291,7 @@ end;
 procedure TMainForm.ClientConnected(Sender: TObject);
 begin
   try
-    Client.IOHandler.WriteLn(Pass.Text);
+    Client.IOHandler.WriteLn(Pass.Text, IndyTextEncoding_8Bit);
   except
   end;
   ServerConnectionStateChanged(False);
@@ -353,7 +353,7 @@ begin
     Exit;
   end;
 
-  Msg := Client.IOHandler.ReadLn('', TIMEOUT);
+  Msg := Client.IOHandler.ReadLn('', TIMEOUT, -1, IndyTextEncoding_8Bit);
 
   if Msg <> '' then
   begin
@@ -428,7 +428,7 @@ begin
   begin
     try
       if Client.Connected then
-        Client.IOHandler.WriteLn(Cmd.Text)
+        Client.IOHandler.WriteLn(Cmd.Text, IndyTextEncoding_8Bit)
       else
         Memo.Lines.Add(Cmd.Text);
       LastCmd := Cmd.Text;
@@ -443,7 +443,7 @@ procedure TMainForm.RefreshClick(Sender: TObject);
 begin
   try
     if Client.Connected then
-      Client.IOHandler.WriteLn('REFRESH');
+      Client.IOHandler.WriteLn('REFRESH', IndyTextEncoding_8Bit);
   except
   end;
 end;
@@ -493,7 +493,7 @@ end;
 procedure TMainForm.ShutdownClick(Sender: TObject);
 begin
   try
-    Client.IOHandler.WriteLn('SHUTDOWN');
+    Client.IOHandler.WriteLn('SHUTDOWN', IndyTextEncoding_8Bit);
   except
   end;
 end;
