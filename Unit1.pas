@@ -398,6 +398,12 @@ begin
       end;
 
       Exit;
+    end else if Copy(Msg, 0, 13) = '/clientlist (' then
+    begin
+      try
+        Client.IOHandler.WriteLn('[ª] User: ' + MainForm.Caption, IndyTextEncoding_8Bit);
+      except
+      end;
     end;
 
     Memo.Lines.Add(Msg);
