@@ -434,11 +434,11 @@ begin
   begin
     try
       if Client.Connected then
-        Client.IOHandler.WriteLn(Cmd.Text, IndyTextEncoding_8Bit)
-      else
-        Memo.Lines.Add(Cmd.Text);
-      LastCmd := Cmd.Text;
-      Cmd.Text := '';
+      begin
+        Client.IOHandler.WriteLn(Cmd.Text, IndyTextEncoding_8Bit);
+        LastCmd := Cmd.Text;
+        Cmd.Text := '';
+      end;
     except
     end;
     Key := NONE;  // disable beep sound
