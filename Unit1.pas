@@ -92,6 +92,7 @@ type
     procedure ServerConnectionStateChanged(NewState: Boolean);
     procedure PlayerListMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
   public
@@ -118,7 +119,8 @@ type
 var
   MainForm: TMainForm;
   RefreshMsg: TMsg_Refresh;
-  LastCmd: string = '';
+  LastCmd: TStringList;
+  LastCmdIndex: Integer;
   Client: TIdTCPClient;
 
 implementation
@@ -284,9 +286,32 @@ begin
   if Key = VK_UP then
   begin
     Key := NONE;  // disable default UP key action
-    Cmd.Text := LastCmd;
-    Cmd.SelStart := Length(Cmd.Text);
-    Cmd.SelLength := 0;
+
+    if LastCmdIndex < LastCmd.Count - 1 then
+    begin
+      if LastCmd[LastCmdIndex] <> Cmd.Text then
+      begin
+        LastCmd.Insert(1, Cmd.Text);
+        Inc(LastCmdIndex);
+      end;
+
+      Inc(LastCmdIndex);
+      Cmd.Text := LastCmd[LastCmdIndex];
+      Cmd.SelStart := Length(Cmd.Text);
+      Cmd.SelLength := 0;
+    end;
+  end
+  else if Key = VK_DOWN then
+  begin
+    Key := NONE;  // disable default UP key action
+
+    if LastCmdIndex > 0 then
+    begin
+      Dec(LastCmdIndex);
+      Cmd.Text := LastCmd[LastCmdIndex];
+      Cmd.SelStart := Length(Cmd.Text);
+      Cmd.SelLength := 0;
+    end;
   end;
 end;
 
@@ -438,7 +463,8 @@ begin
       if Client.Connected then
       begin
         Client.IOHandler.WriteLn(Cmd.Text, IndyTextEncoding_8Bit);
-        LastCmd := Cmd.Text;
+        LastCmd.Insert(1, Cmd.Text);
+        LastCmdIndex := 0;
         Cmd.Text := '';
       end;
     except
@@ -515,6 +541,10 @@ begin
   Client.Port := DEFAULT_PORT;
   Client.ReadTimeout := -1;
 
+  LastCmd := TStringList.Create;
+  LastCmd.Insert(0, '');
+  LastCmdIndex := 0;
+
   {$IFNDEF FPC}LoadConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);{$ENDIF}
 end;
 
@@ -551,6 +581,11 @@ begin
     GetCursorPos(clickPos);
     PlayerPopup.Popup(clickPos.X, clickPos.Y);
   end;
+end;
+
+procedure TMainForm.FormDestroy(Sender: TObject);
+begin
+  LastCmd.Free;
 end;
 
 end.
