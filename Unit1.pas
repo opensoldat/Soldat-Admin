@@ -145,6 +145,7 @@ begin
   Ini.WriteString('ADMIN', 'IP', Host.Text);
   Ini.WriteString('ADMIN', 'Port', Port.Text);
   Ini.WriteString('ADMIN', 'Refresh', iif(Auto.Checked, '1', '0'));
+  Ini.WriteString('ADMIN', 'Password', Pass.Text);
 
   Ini.WriteString('WINDOW', 'Maximized', iif(MainForm.WindowState = wsMaximized, '1', '0'));
   if MainForm.WindowState <> wsMaximized then
@@ -175,6 +176,7 @@ begin
   Host.Text := Conf.Values['IP'];
   Port.Text := Conf.Values['Port'];
   Auto.Checked := Conf.Values['Refresh'] = '1';
+  Pass.Text := Conf.Values['Password'];
   Conf.Clear;
 
   Ini.ReadSectionValues('WINDOW', Conf);
