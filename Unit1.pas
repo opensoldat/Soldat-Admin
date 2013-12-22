@@ -131,14 +131,6 @@ implementation
   {$R *.lfm}
 {$ENDIF}
 
-function iif(Condition: Boolean; TrueCase, FalseCase: Variant): Variant;
-begin
-  if Condition then
-    Result := TrueCase
-  else
-    Result := FalseCase;
-end;
-
 procedure TMainForm.SaveConfig(Filename: string);
 var
   Ini: TIniFile;
