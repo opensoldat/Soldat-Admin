@@ -16,7 +16,8 @@ uses
   Forms,
   Unit1 in 'Unit1.pas' {MainForm},
   Net in 'Net.pas',
-  Helper in 'Helper.pas';
+  Helper in 'Helper.pas',
+  Config in 'Config.pas';
 
 {$R *.res}
 
