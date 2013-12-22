@@ -14,7 +14,8 @@ program SoldatAdmin;
 uses
   {$IFDEF FPC}Interfaces,{$ENDIF}
   Forms,
-  Unit1 in 'Unit1.pas' {MainForm};
+  Unit1 in 'Unit1.pas' {MainForm},
+  Net in 'Net.pas';
 
 {$R *.res}
 
