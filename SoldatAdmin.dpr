@@ -15,7 +15,8 @@ uses
   {$IFDEF FPC}Interfaces,{$ENDIF}
   Forms,
   Unit1 in 'Unit1.pas' {MainForm},
-  Net in 'Net.pas';
+  Net in 'Net.pas',
+  Helper in 'Helper.pas';
 
 {$R *.res}
 
