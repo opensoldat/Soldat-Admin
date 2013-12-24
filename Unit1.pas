@@ -21,8 +21,8 @@ uses
   Graphics,
   // network
   IdTCPClient, IdGlobal,
-  // other
-  IniFiles;
+  // settins
+  Config;
 
 const
   PLAYERNAME_CHARS = 24;
@@ -132,66 +132,13 @@ implementation
 {$ENDIF}
 
 procedure TMainForm.SaveConfig(Filename: string);
-var
-  Ini: TIniFile;
 begin
-  Ini := TIniFile.Create(Filename);
-  Ini.WriteString('ADMIN', 'IP', Host.Text);
-  Ini.WriteString('ADMIN', 'Port', Port.Text);
-  Ini.WriteString('ADMIN', 'Refresh', iif(Auto.Checked, '1', '0'));
-  Ini.WriteString('ADMIN', 'Password', Pass.Text);
-
-  Ini.WriteString('WINDOW', 'Maximized', iif(MainForm.WindowState = wsMaximized, '1', '0'));
-  if MainForm.WindowState <> wsMaximized then
-  begin
-    Ini.WriteString('WINDOW', 'X', IntToStr(MainForm.Left));
-    Ini.WriteString('WINDOW', 'Y', IntToStr(MainForm.Top));
-    Ini.WriteString('WINDOW', 'Width', IntToStr(MainForm.Width));
-    Ini.WriteString('WINDOW', 'Height', IntToStr(MainForm.Height));
-  end;
-
-  Ini.Free;
+  Config.SaveConfig(Filename);
 end;
 
 procedure TMainForm.LoadConfig(Filename: string);
-var
-  Ini: TMemIniFile;
-  Conf: TStringList;
 begin
-  Conf := TStringList.Create;
-  Ini := TMemIniFile.Create(Filename);
-  if not Assigned(Ini) then
-  begin
-    Conf.Free;
-    Exit;
-  end;
-
-  Ini.ReadSectionValues('ADMIN', Conf);
-  Host.Text := Conf.Values['IP'];
-  Port.Text := Conf.Values['Port'];
-  Auto.Checked := Conf.Values['Refresh'] = '1';
-  Pass.Text := Conf.Values['Password'];
-  Conf.Clear;
-
-  Ini.ReadSectionValues('WINDOW', Conf);
-  if Conf.Values['Maximized'] = '1' then
-  begin
-    MainForm.WindowState := wsMaximized;
-  end else
-  begin
-    try
-      MainForm.Left := StrToInt(Conf.Values['X']);
-      MainForm.Top := StrToInt(Conf.Values['Y']);
-      MainForm.Position := poDesigned;
-    except
-    end;
-
-    MainForm.Width := StrToIntDef(Conf.Values['Width'], MainForm.Constraints.MinWidth);
-    MainForm.Height := StrToIntDef(Conf.Values['Height'], MainForm.Constraints.MinHeight);
-  end;
-
-  Ini.Free;
-  Conf.Free;
+  Config.LoadConfig(Filename);
 end;
 
 procedure TMainForm.ConnectClick(Sender: TObject);
