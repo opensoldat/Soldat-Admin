@@ -42,8 +42,8 @@ type
     Timer: TTimer;
     Cmd: TEdit;
     Label1: TLabel;
-    GroupBox1: TGroupBox;
-    GroupBox2: TGroupBox;
+    GameGroup: TGroupBox;
+    RemoteServerGroup: TGroupBox;
     IpLabel: TLabel;
     Host: TEdit;
     Port: TEdit;
@@ -53,7 +53,7 @@ type
     Connect: TButton;
     PlayerList: TListView;
     MapName: TLabel;
-    GroupBox3: TGroupBox;
+    TeamScoresGroup: TGroupBox;
     team1: TLabel;
     team2: TLabel;
     team3: TLabel;

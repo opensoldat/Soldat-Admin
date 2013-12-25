@@ -162,7 +162,7 @@ object MainForm: TMainForm
     OnKeyDown = CmdKeyDown
     OnKeyPress = CmdKeyPress
   end
-  object GroupBox1: TGroupBox
+  object GameGroup: TGroupBox
     Left = 352
     Top = 44
     Width = 237
@@ -249,7 +249,7 @@ object MainForm: TMainForm
       ViewStyle = vsReport
       OnMouseDown = PlayerListMouseDown
     end
-    object GroupBox3: TGroupBox
+    object TeamScoresGroup: TGroupBox
       Left = 6
       Top = 294
       Width = 89
@@ -315,7 +315,7 @@ object MainForm: TMainForm
       OnClick = ShutdownClick
     end
   end
-  object GroupBox2: TGroupBox
+  object RemoteServerGroup: TGroupBox
     Left = 0
     Top = 0
     Width = 589
