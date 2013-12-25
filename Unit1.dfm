@@ -323,21 +323,21 @@ object MainForm: TMainForm
     Anchors = [akLeft, akTop, akRight]
     Caption = 'Remote Server:'
     TabOrder = 3
-    object Label3: TLabel
+    object IpLabel: TLabel
       Left = 7
       Top = 21
       Width = 13
       Height = 13
       Caption = 'IP:'
     end
-    object Label4: TLabel
+    object PortLabel: TLabel
       Left = 136
       Top = 21
       Width = 22
       Height = 13
       Caption = 'Port:'
     end
-    object Label2: TLabel
+    object PasswordLabel: TLabel
       Left = 210
       Top = 21
       Width = 49
