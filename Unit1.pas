@@ -44,12 +44,12 @@ type
     Label1: TLabel;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
-    Label3: TLabel;
+    IpLabel: TLabel;
     Host: TEdit;
     Port: TEdit;
-    Label4: TLabel;
+    PortLabel: TLabel;
     Pass: TEdit;
-    Label2: TLabel;
+    PasswordLabel: TLabel;
     Connect: TButton;
     PlayerList: TListView;
     MapName: TLabel;

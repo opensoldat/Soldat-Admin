@@ -225,7 +225,7 @@ object MainForm: TMainForm
     ClientHeight = 27
     ClientWidth = 585
     TabOrder = 3
-    object Label3: TLabel
+    object IpLabel: TLabel
       Left = 5
       Height = 14
       Top = 6
@@ -233,7 +233,7 @@ object MainForm: TMainForm
       Caption = 'IP:'
       ParentColor = False
     end
-    object Label4: TLabel
+    object PortLabel: TLabel
       Left = 134
       Height = 14
       Top = 6
@@ -241,7 +241,7 @@ object MainForm: TMainForm
       Caption = 'Port:'
       ParentColor = False
     end
-    object Label2: TLabel
+    object PasswordLabel: TLabel
       Left = 208
       Height = 14
       Top = 6
