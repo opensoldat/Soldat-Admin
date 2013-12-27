@@ -41,7 +41,7 @@ type
     Memo: TMemo;
     Timer: TTimer;
     Cmd: TEdit;
-    Label1: TLabel;
+    ServerCommandLabel: TLabel;
     GameGroup: TGroupBox;
     RemoteServerGroup: TGroupBox;
     IpLabel: TLabel;

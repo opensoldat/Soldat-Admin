@@ -126,7 +126,7 @@ object MainForm: TMainForm
     425)
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
+  object ServerCommandLabel: TLabel
     Left = 0
     Top = 388
     Width = 83

@@ -18,7 +18,7 @@ object MainForm: TMainForm
   OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '1.0.14.0'
-  object Label1: TLabel
+  object ServerCommandLabel: TLabel
     Left = 0
     Height = 14
     Top = 388
