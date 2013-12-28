@@ -300,17 +300,17 @@ object MainForm: TMainForm
     AutoPopup = False
     left = 544
     top = 280
-    object Kick1: TMenuItem
+    object KickMenuItem: TMenuItem
       Caption = 'Kick'
-      OnClick = Kick1Click
+      OnClick = KickMenuItemClick
     end
-    object Ban1: TMenuItem
+    object BanMenuItem: TMenuItem
       Caption = 'Ban'
-      OnClick = Ban1Click
+      OnClick = BanMenuItemClick
     end
-    object Admin1: TMenuItem
+    object AdminMenuItem: TMenuItem
       Caption = 'Admin'
-      OnClick = Admin1Click
+      OnClick = AdminMenuItemClick
     end
   end
   object RefreshTimer: TTimer

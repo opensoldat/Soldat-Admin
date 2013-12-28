@@ -394,15 +394,15 @@ object MainForm: TMainForm
     AutoPopup = False
     Left = 544
     Top = 280
-    object Kick1: TMenuItem
+    object KickMenuItem: TMenuItem
       Caption = 'Kick'
       OnClick = Kick1Click
     end
-    object Ban1: TMenuItem
+    object BanMenuItem: TMenuItem
       Caption = 'Ban'
       OnClick = Ban1Click
     end
-    object Admin1: TMenuItem
+    object AdminMenuItem: TMenuItem
       Caption = 'Admin'
       OnClick = Admin1Click
     end

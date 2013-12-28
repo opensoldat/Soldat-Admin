@@ -61,9 +61,9 @@ type
     Refresh: TButton;
     Auto: TCheckBox;
     PlayerPopup: TPopupMenu;
-    Kick1: TMenuItem;
-    Ban1: TMenuItem;
-    Admin1: TMenuItem;
+    KickMenuItem: TMenuItem;
+    BanMenuItem: TMenuItem;
+    AdminMenuItem: TMenuItem;
     Time: TLabel;
     Limit: TLabel;
     GameMode: TLabel;
@@ -78,9 +78,9 @@ type
     procedure ClientDisconnected(Sender: TObject);
     procedure CmdKeyPress(Sender: TObject; var Key: Char);
     procedure RefreshClick(Sender: TObject);
-    procedure Kick1Click(Sender: TObject);
-    procedure Admin1Click(Sender: TObject);
-    procedure Ban1Click(Sender: TObject);
+    procedure KickMenuItemClick(Sender: TObject);
+    procedure AdminMenuItemClick(Sender: TObject);
+    procedure BanMenuItemClick(Sender: TObject);
     procedure RefreshTimerTimer(Sender: TObject);
     procedure ShutdownClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -442,17 +442,17 @@ begin
   CmdKeyPress(nil, Ch);
 end;
 
-procedure TMainForm.Kick1Click(Sender: TObject);
+procedure TMainForm.KickMenuItemClick(Sender: TObject);
 begin
   DoCurrentPlayerAction('/kick');
 end;
 
-procedure TMainForm.Admin1Click(Sender: TObject);
+procedure TMainForm.AdminMenuItemClick(Sender: TObject);
 begin
   DoCurrentPlayerAction('/adm');
 end;
 
-procedure TMainForm.Ban1Click(Sender: TObject);
+procedure TMainForm.BanMenuItemClick(Sender: TObject);
 begin
   DoCurrentPlayerAction('/ban');
 end;
