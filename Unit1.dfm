@@ -257,28 +257,28 @@ object MainForm: TMainForm
       Anchors = [akLeft, akBottom]
       Caption = 'Team scores:'
       TabOrder = 1
-      object team1: TLabel
+      object Team1Label: TLabel
         Left = 8
         Top = 16
         Width = 30
         Height = 13
         Caption = 'Alpha:'
       end
-      object team2: TLabel
+      object Team2Label: TLabel
         Left = 8
         Top = 32
         Width = 31
         Height = 13
         Caption = 'Bravo:'
       end
-      object team3: TLabel
+      object Team3Label: TLabel
         Left = 8
         Top = 48
         Width = 35
         Height = 13
         Caption = 'Charlie:'
       end
-      object team4: TLabel
+      object Team4Label: TLabel
         Left = 8
         Top = 64
         Width = 28

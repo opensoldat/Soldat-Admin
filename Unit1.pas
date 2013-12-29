@@ -54,10 +54,10 @@ type
     PlayerList: TListView;
     MapName: TLabel;
     TeamScoresGroup: TGroupBox;
-    team1: TLabel;
-    team2: TLabel;
-    team3: TLabel;
-    team4: TLabel;
+    Team1Label: TLabel;
+    Team2Label: TLabel;
+    Team3Label: TLabel;
+    Team4Label: TLabel;
     Refresh: TButton;
     Auto: TCheckBox;
     PlayerPopup: TPopupMenu;
@@ -347,10 +347,10 @@ begin
         end;
 
       MapName.Caption := 'Map: ' + RefreshMsg.MapName;
-      Team1.Caption := 'Alpha: ' + IntToStr(RefreshMsg.TeamScore[1]);
-      Team2.Caption := 'Bravo: ' + IntToStr(RefreshMsg.TeamScore[2]);
-      Team3.Caption := 'Charlie: ' + IntToStr(RefreshMsg.TeamScore[3]);
-      Team4.Caption := 'Delta: ' + IntToStr(RefreshMsg.TeamScore[4]);
+      Team1Label.Caption := 'Alpha: ' + IntToStr(RefreshMsg.TeamScore[1]);
+      Team2Label.Caption := 'Bravo: ' + IntToStr(RefreshMsg.TeamScore[2]);
+      Team3Label.Caption := 'Charlie: ' + IntToStr(RefreshMsg.TeamScore[3]);
+      Team4Label.Caption := 'Delta: ' + IntToStr(RefreshMsg.TeamScore[4]);
       Time.Caption := 'Time: ' + IntToStr((RefreshMsg.CurrentTime div 3600)) +
         '/' + IntToStr((RefreshMsg.TimeLimit div 3600));
       Limit.Caption := 'Score Limit: ' + IntToStr(RefreshMsg.KillLimit);

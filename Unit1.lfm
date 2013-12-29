@@ -153,7 +153,7 @@ object MainForm: TMainForm
       ClientHeight = 64
       ClientWidth = 85
       TabOrder = 1
-      object team1: TLabel
+      object Team1Label: TLabel
         Left = 6
         Height = 14
         Top = 1
@@ -161,7 +161,7 @@ object MainForm: TMainForm
         Caption = 'Alpha:'
         ParentColor = False
       end
-      object team2: TLabel
+      object Team2Label: TLabel
         Left = 6
         Height = 14
         Top = 17
@@ -169,7 +169,7 @@ object MainForm: TMainForm
         Caption = 'Bravo:'
         ParentColor = False
       end
-      object team3: TLabel
+      object Team3Label: TLabel
         Left = 6
         Height = 14
         Top = 33
@@ -177,7 +177,7 @@ object MainForm: TMainForm
         Caption = 'Charlie:'
         ParentColor = False
       end
-      object team4: TLabel
+      object Team4Label: TLabel
         Left = 6
         Height = 14
         Top = 49
