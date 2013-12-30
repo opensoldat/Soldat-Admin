@@ -26,7 +26,7 @@ begin
   Ini := TIniFile.Create(Filename);
   Ini.WriteString('ADMIN', 'IP', MainForm.Host.Text);
   Ini.WriteString('ADMIN', 'Port', MainForm.Port.Text);
-  Ini.WriteString('ADMIN', 'Refresh', iif(MainForm.Auto.Checked, '1', '0'));
+  Ini.WriteString('ADMIN', 'Refresh', iif(MainForm.AutoRefreshCheckBox.Checked, '1', '0'));
   Ini.WriteString('ADMIN', 'Password', MainForm.Pass.Text);
 
   Ini.WriteString('WINDOW', 'Maximized', iif(MainForm.WindowState = wsMaximized, '1', '0'));
@@ -57,7 +57,7 @@ begin
   Ini.ReadSectionValues('ADMIN', Conf);
   MainForm.Host.Text := Conf.Values['IP'];
   MainForm.Port.Text := Conf.Values['Port'];
-  MainForm.Auto.Checked := Conf.Values['Refresh'] = '1';
+  MainForm.AutoRefreshCheckBox.Checked := Conf.Values['Refresh'] = '1';
   MainForm.Pass.Text := Conf.Values['Password'];
   Conf.Clear;
 

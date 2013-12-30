@@ -59,7 +59,7 @@ type
     Team3Label: TLabel;
     Team4Label: TLabel;
     Refresh: TButton;
-    Auto: TCheckBox;
+    AutoRefreshCheckBox: TCheckBox;
     PlayerPopup: TPopupMenu;
     KickMenuItem: TMenuItem;
     BanMenuItem: TMenuItem;
@@ -459,7 +459,7 @@ end;
 
 procedure TMainForm.RefreshTimerTimer(Sender: TObject);
 begin
-  if (Auto.Checked) and (MainForm.WindowState <> wsMinimized) then
+  if (AutoRefreshCheckBox.Checked) and (MainForm.WindowState <> wsMinimized) then
     RefreshClick(nil);
 end;
 

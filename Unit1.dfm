@@ -296,7 +296,7 @@ object MainForm: TMainForm
       TabOrder = 2
       OnClick = RefreshClick
     end
-    object Auto: TCheckBox
+    object AutoRefreshCheckBox: TCheckBox
       Left = 6
       Top = 41
       Width = 113
