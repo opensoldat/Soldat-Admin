@@ -27,7 +27,7 @@ object MainForm: TMainForm
     Caption = 'Server command:'
     ParentColor = False
   end
-  object Memo: TMemo
+  object ServerOutputMemo: TMemo
     Left = 0
     Height = 344
     Top = 45

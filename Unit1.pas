@@ -38,7 +38,7 @@ type
 
   { TMainForm }
   TMainForm = class(TForm)
-    Memo: TMemo;
+    ServerOutputMemo: TMemo;
     Timer: TTimer;
     Cmd: TEdit;
     ServerCommandLabel: TLabel;
@@ -176,7 +176,7 @@ begin
 
     if InvalidInput then
     begin
-      Memo.Lines.Add('Invalid input.');
+      ServerOutputMemo.Lines.Add('Invalid input.');
       Connect.Enabled := True;
       Exit;
     end;
@@ -188,7 +188,7 @@ begin
       Client.Connect;
     except
       Connect.Caption := 'Connect';
-      Memo.Lines.Add('Connection failed');
+      ServerOutputMemo.Lines.Add('Connection failed');
     end;
   end
   else
@@ -355,7 +355,7 @@ begin
       end;
     end;
 
-    Memo.Lines.Add(Msg);
+    ServerOutputMemo.Lines.Add(Msg);
     if (Msg = 'Invalid server password. Cannot login.') or
       (Msg = 'Invalid password.') then
     begin
@@ -371,7 +371,7 @@ end;
 
 procedure TMainForm.ClientDisconnected(Sender: TObject);
 begin
-  Memo.Lines.Add('Admin disconnected');
+  ServerOutputMemo.Lines.Add('Admin disconnected');
 end;
 
 procedure TMainForm.CmdKeyPress(Sender: TObject; var Key: Char);

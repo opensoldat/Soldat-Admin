@@ -134,7 +134,7 @@ object MainForm: TMainForm
     Anchors = [akLeft, akBottom]
     Caption = 'Server command:'
   end
-  object Memo: TMemo
+  object ServerOutputMemo: TMemo
     Left = 0
     Top = 45
     Width = 345
