@@ -20,7 +20,7 @@ uses
   SysUtils, Classes, Controls, Forms, StdCtrls, ExtCtrls, ComCtrls, Menus,
   Graphics,
   // network
-  IdTCPClient, IdGlobal,
+  IdTCPClient, IdGlobal, Net,
   // settins
   Config;
 
@@ -98,23 +98,6 @@ type
   public
     { Public declarations }
   end;
-
-  // binary packets
-  TMsg_Refresh = packed record
-    Name: array[1..MAX_PLAYERS] of string[PLAYERNAME_CHARS];
-    Team: array[1..MAX_PLAYERS] of Byte;
-    Kills: array[1..MAX_PLAYERS] of Word;
-    Deaths: array[1..MAX_PLAYERS] of Word;
-    Ping: array[1..MAX_PLAYERS] of Byte;
-    Number: array[1..MAX_PLAYERS] of Byte;
-    IP: array[1..MAX_PLAYERS, 1..4] of Byte;
-    TeamScore: array[1..MAX_TEAMS] of Word;
-    MapName: string[MAPNAME_CHARS];
-    TimeLimit, CurrentTime: Integer;
-    KillLimit: Word;
-    GameStyle: Byte;
-  end;
-
 
 var
   MainForm: TMainForm;
