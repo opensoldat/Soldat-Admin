@@ -248,7 +248,9 @@ end;
 
 procedure TMainForm.FormShow(Sender: TObject);
 begin
-  {$IFDEF FPC}LoadConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);{$ENDIF}
+  {$IFDEF FPC}
+  LoadConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);
+  {$ENDIF}
 end;
 
 procedure TMainForm.ServerCredentialsEditKeyPress(Sender: TObject; var Key: char);
@@ -350,7 +352,8 @@ begin
     end else if Copy(Msg, 0, 13) = '/clientlist (' then
     begin
       try
-        Client.IOHandler.WriteLn('[ª] User: ' + MainForm.Caption, IndyTextEncoding_8Bit);
+        Client.IOHandler.WriteLn('[ª] User: ' + MainForm.Caption,
+          IndyTextEncoding_8Bit);
       except
       end;
     end;
@@ -467,7 +470,9 @@ begin
   LastCmd.Insert(0, '');
   LastCmdIndex := 0;
 
-  {$IFNDEF FPC}LoadConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);{$ENDIF}
+  {$IFNDEF FPC}
+  LoadConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);
+  {$ENDIF}
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);

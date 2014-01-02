@@ -26,10 +26,12 @@ begin
   Ini := TIniFile.Create(Filename);
   Ini.WriteString('ADMIN', 'IP', MainForm.Host.Text);
   Ini.WriteString('ADMIN', 'Port', MainForm.Port.Text);
-  Ini.WriteString('ADMIN', 'Refresh', iif(MainForm.AutoRefreshCheckBox.Checked, '1', '0'));
+  Ini.WriteString('ADMIN', 'Refresh', iif(MainForm.AutoRefreshCheckBox.Checked,
+    '1', '0'));
   Ini.WriteString('ADMIN', 'Password', MainForm.Pass.Text);
 
-  Ini.WriteString('WINDOW', 'Maximized', iif(MainForm.WindowState = wsMaximized, '1', '0'));
+  Ini.WriteString('WINDOW', 'Maximized', iif(MainForm.WindowState = wsMaximized,
+    '1', '0'));
   if MainForm.WindowState <> wsMaximized then
   begin
     Ini.WriteString('WINDOW', 'X', IntToStr(MainForm.Left));
@@ -74,8 +76,10 @@ begin
     except
     end;
 
-    MainForm.Width := StrToIntDef(Conf.Values['Width'], MainForm.Constraints.MinWidth);
-    MainForm.Height := StrToIntDef(Conf.Values['Height'], MainForm.Constraints.MinHeight);
+    MainForm.Width := StrToIntDef(Conf.Values['Width'],
+      MainForm.Constraints.MinWidth);
+    MainForm.Height := StrToIntDef(Conf.Values['Height'],
+      MainForm.Constraints.MinHeight);
   end;
 
   Ini.Free;
