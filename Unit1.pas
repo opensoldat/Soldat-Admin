@@ -84,8 +84,8 @@ type
     procedure RefreshTimerTimer(Sender: TObject);
     procedure ShutdownClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure SaveConfig(Filename: string);
-    procedure LoadConfig(Filename: string);
+    procedure SaveConfig();
+    procedure LoadConfig();
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DoCurrentPlayerAction(Name: string);
     procedure ServerCredentialsEditChange(Sender: TObject);
@@ -105,6 +105,7 @@ var
   LastCmd: TStringList;
   LastCmdIndex: Integer;
   Client: TIdTCPClient;
+  Config: TConfig;
 
 implementation
 
@@ -114,14 +115,43 @@ implementation
   {$R *.lfm}
 {$ENDIF}
 
-procedure TMainForm.SaveConfig(Filename: string);
+procedure TMainForm.SaveConfig();
 begin
-  Config.SaveConfig(Filename);
+  Config.Host := Host.Text;
+  Config.Port := Port.Text;
+  Config.AutoRefresh := AutoRefreshCheckBox.Checked;
+  Config.Password := Pass.Text;
+  Config.Maximized := WindowState = wsMaximized;
+  Config.X := Left;
+  Config.Y := Top;
+  Config.Width := Width;
+  Config.Height := Height;
+
+  Config.Save();
 end;
 
-procedure TMainForm.LoadConfig(Filename: string);
+procedure TMainForm.LoadConfig();
 begin
-  Config.LoadConfig(Filename);
+  Config.Load();
+
+  Host.Text := Config.Host;
+  Port.Text := Config.Port;
+  AutoRefreshCheckBox.Checked := Config.AutoRefresh;
+  Pass.Text := Config.Password;
+  if Config.Maximized then
+  begin
+    WindowState := wsMaximized;
+  end;
+
+  if not Config.DefaultPosition then
+  begin
+    Left := Config.X;
+    Top := Config.Y;
+    Position := poDesigned;
+  end;
+
+  Width := Config.Width;
+  Height := Config.Height;
 end;
 
 procedure TMainForm.ConnectClick(Sender: TObject);
@@ -249,7 +279,7 @@ end;
 procedure TMainForm.FormShow(Sender: TObject);
 begin
   {$IFDEF FPC}
-  LoadConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);
+  LoadConfig();
   {$ENDIF}
 end;
 
@@ -466,12 +496,14 @@ begin
   Client.Port := DEFAULT_PORT;
   Client.ReadTimeout := -1;
 
+  Config := TConfig.Create(ExtractFilePath(Application.ExeName) + CONFIG_FILE);
+
   LastCmd := TStringList.Create;
   LastCmd.Insert(0, '');
   LastCmdIndex := 0;
 
   {$IFNDEF FPC}
-  LoadConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);
+  LoadConfig();
   {$ENDIF}
 end;
 
@@ -482,7 +514,7 @@ begin
       Client.Disconnect;
   except
   end;
-  SaveConfig(ExtractFilePath(Application.ExeName) + CONFIG_FILE);
+  SaveConfig();
 end;
 
 procedure TMainForm.ServerCredentialsEditChange(Sender: TObject);
@@ -513,6 +545,7 @@ end;
 procedure TMainForm.FormDestroy(Sender: TObject);
 begin
   LastCmd.Free;
+  Config.Free;
 end;
 
 end.
