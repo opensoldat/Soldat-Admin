@@ -396,15 +396,15 @@ object MainForm: TMainForm
     Top = 280
     object KickMenuItem: TMenuItem
       Caption = 'Kick'
-      OnClick = Kick1Click
+      OnClick = KickMenuItemClick
     end
     object BanMenuItem: TMenuItem
       Caption = 'Ban'
-      OnClick = Ban1Click
+      OnClick = BanMenuItemClick
     end
     object AdminMenuItem: TMenuItem
       Caption = 'Admin'
-      OnClick = Admin1Click
+      OnClick = AdminMenuItemClick
     end
   end
   object RefreshTimer: TTimer
